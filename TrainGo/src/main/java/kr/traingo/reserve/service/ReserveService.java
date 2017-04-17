@@ -37,7 +37,7 @@ public interface ReserveService {
 	public void MakeSeat(CSCommand seat); 
 	public void autotrainon();
 	public void autotrainoff();
-	public int autotrainconfirm();
+	public Integer autotrainconfirm();
 	
 	
 	

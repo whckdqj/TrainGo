@@ -11,16 +11,20 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- Component Auto Scan -->
-    <context:component-scan base-package="kr.traingo.controller" />
+    <context:component-scan base-package="kr.traingo.*">
+        <context:include-filter type="regex" expression="(controller|crontab)\..*"/>
+    </context:component-scan>
+    <task:scheduler id="jobScheduler" pool-size="10" />
+    <task:annotation-driven scheduler="jobScheduler" />
+    <!-- <context:component-scan base-package="kr.traingo.controller" />
     <context:component-scan base-package="kr.traingo.member.controller" />
     <context:component-scan base-package="kr.traingo.board.controller" />
     <context:component-scan base-package="kr.traingo.reserve.controller" />
-    <context:component-scan base-package="kr.traingo.table.controller" />
+    <context:component-scan base-package="kr.traingo.table.controller" /> -->
     
     <!-- For Reservation : Auto Update / Crontab -->
-    <context:component-scan base-package="kr.traingo.crontab" />
-    <task:scheduler id="jobScheduler" pool-size="10" />
-    <task:annotation-driven scheduler="jobScheduler" />
+    <!-- <context:component-scan base-package="kr.traingo.crontab" /> -->
+    
     
     <!-- Main View Controll -->
     <view-controller path="/home.do" view-name="main"/>

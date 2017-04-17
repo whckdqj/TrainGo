@@ -85,5 +85,5 @@ public interface ReserveMapper {
 	public void autotrainoff();
 
 	@Select("select value from autosetting where name='autotrain'")
-	public int autotrainconfirm();
+	public Integer autotrainconfirm();
 }

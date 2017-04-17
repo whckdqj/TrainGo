@@ -171,7 +171,7 @@ public class ReserveServiceImpl implements ReserveService{
 
 
 	@Override
-	public int autotrainconfirm() {
+	public Integer autotrainconfirm() {
 
 		return reserveMapper.autotrainconfirm();
 	}

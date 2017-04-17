@@ -22,9 +22,10 @@ public class Scheduler {
 	private ReserveService reserveService;	
 	
 	
-	
-	@Scheduled(fixedDelay=20000)	
-	public void autotrain(){		
+	// 2017.04.17 jcb Change - Time Inteval Every Day 21:00
+	// @Scheduled(fixedDelay=20000) 
+	@Scheduled(cron="0 0 21 * * ?")	
+	public void autotrain(){
 		
 		reserveService.autotrainconfirm();
 				
