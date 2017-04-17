@@ -2,9 +2,12 @@
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:task="http://www.springframework.org/schema/task"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- Component Auto Scan -->
@@ -13,6 +16,11 @@
     <context:component-scan base-package="kr.traingo.board.controller" />
     <context:component-scan base-package="kr.traingo.reserve.controller" />
     <context:component-scan base-package="kr.traingo.table.controller" />
+    
+    <!-- For Reservation : Auto Update / Crontab -->
+    <context:component-scan base-package="kr.traingo.crontab" />
+    <task:scheduler id="jobScheduler" pool-size="10" />
+    <task:annotation-driven scheduler="jobScheduler" />
     
     <!-- Main View Controll -->
     <view-controller path="/home.do" view-name="main"/>
