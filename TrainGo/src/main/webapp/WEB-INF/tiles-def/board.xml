@@ -5,24 +5,55 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name="boardList" extends="main">
-		<put-attribute name="title" value="게시판 목록"/>
-		<put-attribute name="body" value="/WEB-INF/views/board/boardList.jsp"/>
+	<definition name="faqBoardList" extends="main">
+		<put-attribute name="title" value="FAQ게시판 목록"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/faqBoard/faqBoardList.jsp"/>
 	</definition>
-	
-	<definition name="boardWrite" extends="main">
+	<definition name="faqBoardWrite" extends="main">
+		<put-attribute name="title" value="FAQ글쓰기"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/faqBoard/faqBoardWrite.jsp"/>
+	</definition>
+	<definition name="faqBoardView" extends="main">
+		<put-attribute name="title" value="FAQ게시글 상세정보"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/faqBoard/faqBoardView.jsp"/>
+	</definition>
+	<definition name="faqBoardModify" extends="main">
+		<put-attribute name="title" value="FAQ게시글 수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/board/faqBoard/faqBoardModify.jsp"/>
+	</definition>
+    
+    <definition name="freeBoardList" extends="main">
+        <put-attribute name="title" value="게시판 목록"/>
+        <put-attribute name="body" value="/WEB-INF/views/board/freeBoard/freeBoardList.jsp"/>
+    </definition>
+    <definition name="freeBoardWrite" extends="main">
         <put-attribute name="title" value="글쓰기"/>
-        <put-attribute name="body" value="/WEB-INF/views/board/boardWrite.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/board/freeBoard/freeBoardWrite.jsp"/>
     </definition>
-    
-    <definition name="boardView" extends="main">
+    <definition name="freeBoardView" extends="main">
         <put-attribute name="title" value="게시글 상세정보"/>
-        <put-attribute name="body" value="/WEB-INF/views/board/boardView.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/board/freeBoard/freeBoardView.jsp"/>
+    </definition>
+    <definition name="freeBoardModify" extends="main">
+        <put-attribute name="title" value="게시글 수정"/>
+        <put-attribute name="body" value="/WEB-INF/views/board/freeBoard/freeBoardModify.jsp"/>
     </definition>
     
-    <definition name="boardModify" extends="main">
+    <definition name="infoBoardList" extends="main">
+        <put-attribute name="title" value="게시판 목록"/>
+        <put-attribute name="body" value="/WEB-INF/views/board/informationBoard/infoBoardList.jsp"/>
+    </definition>
+    <definition name="infoBoardWrite" extends="main">
+        <put-attribute name="title" value="글쓰기"/>
+        <put-attribute name="body" value="/WEB-INF/views/board/informationBoard/infoBoardWrite.jsp"/>
+    </definition>
+    <definition name="infoBoardView" extends="main">
+        <put-attribute name="title" value="게시글 상세정보"/>
+        <put-attribute name="body" value="/WEB-INF/views/board/informationBoard/infoBoardView.jsp"/>
+    </definition>
+    <definition name="infoBoardModify" extends="main">
         <put-attribute name="title" value="게시글 수정"/>
-        <put-attribute name="body" value="/WEB-INF/views/board/boardModify.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/views/board/informationBoard/infoBoardModify.jsp"/>
     </definition>
 </tiles-definitions>
 

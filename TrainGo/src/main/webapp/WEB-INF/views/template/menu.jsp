@@ -36,15 +36,15 @@
 					</ul></li>
 				</c:if>
 				<li><a href="${pageContext.request.contextPath}/resv_main.do">예매</a></li>
-				<li><a href="${pageContext.request.contextPath}/contents/table/table.do">시간표</a></li>
+				<li><a href="${pageContext.request.contextPath}/table/callbackTable.do">시간표</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown" role="button" aria-expanded="false">게시판
 						<span class="caret"></span>
 				</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="${pageContext.request.contextPath}/contents/board/list.do?code=1">맛집 정보</a></li>
-						<li><a href="${pageContext.request.contextPath}/contents/board/list.do?code=2">축제 정보</a></li>
-						<li><a href="${pageContext.request.contextPath}/contents/board/list.do?code=3">여행 정보</a></li>
+						<li><a href="${pageContext.request.contextPath}/board/informationBoard/infolist.do?code=1">맛집 정보</a></li>
+						<li><a href="${pageContext.request.contextPath}/board/informationBoard/infolist.do?code=2">축제 정보</a></li>
+						<li><a href="${pageContext.request.contextPath}/board/informationBoard/infolist.do?code=3">여행 정보</a></li>
 						<li class="divider"></li>
 						<li><a href="${pageContext.request.contextPath}/contents/qna/qnaList.do">Q&nbsp;&amp;&nbsp;A</a></li>
 					</ul></li>
