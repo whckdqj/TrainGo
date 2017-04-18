@@ -47,7 +47,7 @@
 </div>
 
 <!-- jQuery, BootStrap Area -->
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 </body>
 </html>
 
