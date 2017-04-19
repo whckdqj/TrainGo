@@ -1,13 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- jQuery -->
+<script src="${pageContext.request.contextPath}/resources/js/jquery-3.1.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
+<!-- Plugins-JS -->
+<script src="${pageContext.request.contextPath}/resources/js/slick.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.themepunch.plugins.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/jquery.themepunch.revolution.js"></script>
+
 <div class="row row_content">
-    
     <div class="col-xs-5">
-    	<p>미니예매 : 출발역, 도착역, 출발일</p>
-    </div>
+    <div class="row">
+    	<form action="${pageContext.request.contextPath}/trainseat.do" id="mini_resv">
+            <fieldset>
+            <div class="form-group">
+                <label for="stn_dep" class="col-xs-2 control-label">출발역</label>
+                <div class="col-xs-10">
+                    <select class="form-control" id="stn_dep" name="depplaceid">
+                        <option selected="selected">출발지를 선택해 주세요</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="stn_arr" class="col-xs-2 control-label">도착역</label>
+            <div class="col-xs-10">
+                <select class="form-control" id="stn_arr" name="arrplaceid">
+                    <option selected="selected">도착지를 선택해 주세요</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="dept_time" class="col-xs-2 control-label">출발일</label>
+            <div class="col-xs-10">
+                <input type="text" class="form-control" id="dept_time" name="depplandtime" required="required" autocomplete="off">
+            </div>
+            <div class="col-xs-10 col-xs-offset-2" id="pickDate">
+            </div>
+        </div>
+        <div class="col-xs-12">
+        <hr>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12"><input type="submit" class="btn btn-info btn-block" id="runCheck" value="Reserve"></div>
+        </div>
+        </fieldset>
+        </form>
+    </div>  <!-- Row-End -->
+    </div>  <!-- col-xs-5 End -->
     <div class="col-xs-7">
     	<p>FAQ 5개내외</p>
+    </div>
+    <div class="col-xs-12" id="mini_resv_table" style="display: none;">
+        
     </div>
     <div class="col-xs-12">
     	<p>관광지 3~5개만 보임</p>
@@ -92,3 +137,4 @@
 
 <!-- CustomScript -->
 <script src="${pageContext.request.contextPath}/resources/js/main_hdl.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/miniResv_hdl.js"></script>

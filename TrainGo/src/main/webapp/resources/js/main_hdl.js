@@ -5,12 +5,6 @@
 jQuery(document).ready(function(){
 	var wid, hgt;
 	var rat;
-    jQuery(".regular").slick({
-        dots: false,
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1
-      });
 	
 /* Member Control */
 	jQuery("#memberForm").submit(function(event){
