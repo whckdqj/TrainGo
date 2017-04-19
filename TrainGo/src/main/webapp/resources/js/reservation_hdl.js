@@ -48,19 +48,20 @@ jQuery(document).ready(function(){
 		jQuery("#reservationcar").show();	
 		
 		 jQuery.ajax({
-			url: getContextPath()+"/contents/reserve/trainseat.do",
+			url: getContextPath()+"/trainseat.do",
 			type: "post",
 			data: ser,
 			dataType: "json",
 			cache: false,
 			timeout: 50000,
-			success: function(data){	
+			success: function(data){
+			    var listUp = data.list;
 				if(data == null){
 					alert("데이터가 안옴");
 					return false;
 					}			
 				else{
-					jQuery(data).each(function(index, item){
+					jQuery(listUp).each(function(index, item){
 						var output = "<tr>";
 						output += "<td>"+item.trainnum+"</td>";
 						output += "<td>"+item.trainname+"</td>";
@@ -70,7 +71,7 @@ jQuery(document).ready(function(){
 						output += "<td>"+item.arrivaltime+"</td>";
 						output += "<td>"+item.charge+"</td>";
 						output += "<td>"+item.seats+"</td>";
-						output += "<td><a href='"+getContextPath()+"/contents/reserve/selectseat.do?id="+item.trainnum+"'>예매</a></td>";
+						output += "<td><a href='"+getContextPath()+"/selectseat.do?trainnum="+item.trainnum+"'>예매</a></td>";
 						output += "</tr>";												
 								
 						
@@ -105,39 +106,50 @@ function getStaionCodes(context, vals){
 	// Post Data Set
 	
 	// Call Station Codes.
-	jQuery.ajax({
-		url: getContextPath()+"/contents/table/getSttn.do",
-		type: "post",
-		data: {ctyCode:vals},
-		dataType: "json",
-		cache: false,
-		timeout: 50000,
-		success: function(data){
-			
-			context.empty();
-			
-			if(data == null){
-				alert("목록 호출 오류 발생!");
-				return false;
-			}
-			else{
-				jQuery(data).each(function(index, item){
-					var output = '<option value="'+item.nodeId+'" id="node'+index+'">';
-					output += item.nodeName;
-					output += '</option>';
-					
-					// 문서 객체에 추가
-					context.append(output);
-				});
-			}
-		},
-		error: function(){
-			context.empty();
-			var err_out="<option>에러가 터졌네요!!</option>";
-			context.append(err_out);
-		}
-	});
-	
+ // Get Table for Station
+    // vals : CityCode
+    // context : select Tag context
+    // Main Do : Generate Select Option Tags
+    
+    // Tag Construction : <option>2</option>
+    
+    // Post Data Set
+    
+    // Call Station Codes.
+    jQuery.ajax({
+        url: getContextPath()+"/table/getTrainSttnList.do",
+        type: "post",
+        data: {ctyCode:vals},
+        dataType: "json",
+        cache: false,
+        timeout: 50000,
+        success: function(data){
+            // List-Up Map
+            var theList = data.list;
+            
+            context.empty();
+            
+            if(data == null){
+                alert("목록 호출 오류 발생!");
+                return false;
+            }
+            else{
+                jQuery(theList).each(function(index, item){
+                    var output = '<option value="'+item.nodeId+'" id="node'+index+'">';
+                    output += item.nodeName;
+                    output += '</option>';
+                    
+                    // 문서 객체에 추가
+                    context.append(output);
+                });
+            }
+        },
+        error: function(){
+            context.empty();
+            var err_out="<option>에러가 터졌네요!!</option>";
+            context.append(err_out);
+        }
+    })
 }
 
 function getCityNodes(){
@@ -145,43 +157,45 @@ function getCityNodes(){
 	// Main Do : Generate City Names
 	// Tag Construction : <option>2</option>
 	
-	jQuery.ajax({
-		url: getContextPath()+"/contents/table/getCities.do",
-		type: "post",
-		dataType: "json",
-		cache: false,
-		timeout: 50000,
-		success: function(data){
-			
-			jQuery("#area_dep").empty();
-			jQuery("#area_arr").empty();
-			
-			if(data == null){
-				alert("목록 호출 오류 발생!");
-				return false;
-			}
-			else{
-				var output = "<option>선택하세요</option>"
-				jQuery(data).each(function(index, item){
-					output += "<option value='"+item.cityCode;
-					output += "'>"+item.cityName;
-					output += "</option>";
-				});
-				// 문서 객체에 추가
-				jQuery("#area_dep").append(output);
-				jQuery("#area_arr").append(output);
-			}
-		},
-		error: function(){
-			jQuery("#area_dep").empty();
-			jQuery("#area_arr").empty();
-			
-			var out_err="<option>지역정보 로딩실패</option>";
-			
-			jQuery("#area_dep").append(out_err);
-			jQuery("#area_arr").append(out_err);
-		}
-	});
+    jQuery.ajax({
+        url: getContextPath()+"/table/getCtyCode.do",
+        type: "post",
+        dataType: "json",
+        cache: false,
+        timeout: 50000,
+        success: function(data){
+            // List-Up the HashTable
+            var theList = data.list;
+            
+            jQuery("#area_dep").empty();
+            jQuery("#area_arr").empty();
+            
+            if(theList == null){
+                alert("목록 호출 오류 발생!");
+                return false;
+            }
+            else{
+                var output = "<option>선택하세요</option>"
+                jQuery(theList).each(function(index, item){
+                    output += "<option value='"+item.cityCode;
+                    output += "'>"+item.cityName;
+                    output += "</option>";
+                });
+                // 문서 객체에 추가
+                jQuery("#area_dep").append(output);
+                jQuery("#area_arr").append(output);
+            }
+        },
+        error: function(){
+            jQuery("#area_dep").empty();
+            jQuery("#area_arr").empty();
+            
+            var out_err="<option>지역정보 로딩실패</option>";
+            
+            jQuery("#area_dep").append(out_err);
+            jQuery("#area_arr").append(out_err);
+        }
+    });
 	
 }
 

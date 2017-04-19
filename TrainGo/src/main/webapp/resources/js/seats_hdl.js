@@ -5,7 +5,7 @@ $(function(){
 	var output="";
 
 	$('.seats').css('color','#0000ff');
-	$(document).on('click','.seats',function(){   
+	$(document).on('click','.seat',function(){   
 		output="";
 
 		if(clickseat==""){    
@@ -41,7 +41,7 @@ $(function(){
 		output=clickseat+clickseat2+clickseat3; 
 		$("#seatnum").val(output); 
 		$(this).css('color','#0000ff') 
-		$(this).attr('class','seats');
+		$(this).attr('class','seat');
 
 	});
 

@@ -187,3 +187,63 @@ div #loggedInfo{
     line-height: 20px;
     color: #CFCFFF;
 }
+
+/* 3.29 추가  */
+div.bus {
+   /*  float:left;   일단 이거는 안써도 될듯*/ 
+      margin:140px auto 0 auto; 
+     padding: 15px 100px 0 70px;    /*패딩은 일단 안에 있는 내용물을 조절하는 것 같은데 일단 어떻게 조절하는지는 모르겠다. */
+    width: 800px;    
+    height: 300px;
+    
+   /*  background-size: 760px 300px; */
+    
+    
+    font-weight: bold; /* 이거는 왜 있는 거냐 */
+    background: url(../img/seat_bg.gif) no-repeat 0 0;
+}
+
+/* 3.29 추가  */
+ul.seats{
+	width:60px;
+    list-style:none;
+	float:left; 
+}
+
+
+/* 3.29 추가  */
+li.seat{
+width: 40px;
+height: 40px;
+background-image: url(../img/empty_seat.gif);
+background-size: 40px;
+}
+
+
+/* 3.29 추가  */
+li.off{
+width: 40px;
+height: 40px;
+background-image: url(../img/choice_seat.gif);
+background-size: 40px;	
+	
+}
+
+
+/* 3.29 추가  */
+li.full{
+width: 40px;
+height: 40px;
+background-image: url(../img/full_seat.gif);
+background-size: 40px;		
+	
+}
+
+
+
+
+li.tonglo{
+width: 40px;
+height: 40px;
+
+}

@@ -28,7 +28,7 @@ public class ReserveServiceImpl implements ReserveService{
 
 	@Override
 	public List<TrainCommand> getTrainList(TrainCommand command) {		
-		return reserveMapper.getTrainList(command) ;
+	    return reserveMapper.getTrainList(command) ;
 	}
 
 

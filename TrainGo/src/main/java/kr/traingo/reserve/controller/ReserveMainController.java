@@ -74,7 +74,7 @@ public class ReserveMainController {
 
 
 	//트레인정보와 시트 정보를 가져와 줌 
-	@RequestMapping("trainseat.do")
+	@RequestMapping("/trainseat.do")
 	@ResponseBody  
 	public Map<String,Object> trainseat(@RequestParam(value="startdate") String departdate){
 		//지금은 리퀘스트파람만 받지만, 나중에 다른 것을 받게 되니까, 그것까지 다 확인할 수 없는 리퀘스트 파람말고 다른 걸 써보는 것도 생각해봐야할 듯.
@@ -86,7 +86,8 @@ public class ReserveMainController {
 		command.setArrivalsta("부산");
 		command.setDeparttime(departdate);    	        	
 
-		List<TrainCommand> train=reserveService.getTrainList(command);      	
+		List<TrainCommand> train=reserveService.getTrainList(command);
+		
 		Map<String,Object> mapJson =new HashMap<String,Object>();    	
 		mapJson.put("list",train);
 

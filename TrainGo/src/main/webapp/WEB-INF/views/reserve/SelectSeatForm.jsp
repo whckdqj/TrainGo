@@ -90,7 +90,7 @@
 
 		<div class="col-xs-12">
 			<hr>
-			<form class="form-horizontal" id="select_seat" commandName="traincommand" action="seatselected.do" method="post">
+			<form class="form-horizontal" id="select_seat" commandName="traincommand" action="${pageContext.request.contextPath}/seatselected.do" method="post">
 				<fieldset>
 					<div class="form-group">
 						<label for="id" class="col-xs-2 control-label">ID</label>
