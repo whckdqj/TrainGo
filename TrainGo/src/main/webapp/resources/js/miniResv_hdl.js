@@ -3,27 +3,9 @@
  */
 jQuery(document).ready(function(){
 	// Get City
-	getCityNodes();
+	getNodes(jQuery("#stn_dep"), "NAT010000");
+	getNodes(jQuery("#stn_arr"), "NAT014445");
 	
-	// Selected Element Influence to StationCode
-	jQuery(document).on("change", "#area_dep", function(){
-		var vals = jQuery("#area_dep option:selected").val();
-		console.log(vals);
-		if(jQuery("#area_dep option:selected").val()=="선택하세요"){
-			jQuery("#stn_dep").empty().append('<option selected="selected">출발지를 선택해 주세요</option>');
-			return;
-		}
-		getStaionCodes(jQuery("#stn_dep"), jQuery("#area_dep option:selected").val());
-	});
-	jQuery(document).on("change", "#area_arr", function(){
-		/*var vals = jQuery("#area_arr option:selected").val();
-		console.log(vals);*/
-		if(jQuery("#area_arr option:selected").val()=="선택하세요"){
-			jQuery("#stn_arr").empty().append('<option selected="selected">도착지를 선택해 주세요</option>');
-			return;
-		}
-		getStaionCodes(jQuery("#stn_arr"), jQuery("#area_arr option:selected").val());
-	});
 	/* Picker */
 	jQuery("#dept_time").on("click", function(){
 	    showPicker(jQuery("#pickDate"));
@@ -176,6 +158,84 @@ function getStaionCodes(context, vals){
 		}
 	});
 	
+}
+
+/* 2017.04.20 19:41 - JCB Add for Mini-Resv */
+function getNodes(context, selNodeId){
+    // Get Station Node for Mini-Resv
+    // Main Do : Mini Resv Selector Construction
+    // Tag Construction : <option>2</option>
+    
+    jQuery.ajax({
+        url: getContextPath()+"/table/getCtyCode.do",
+        type: "post",
+        dataType: "json",
+        cache: false,
+        timeout: 50000,
+        success: function(data){
+            // List-Up the HashTable
+            var theList = data.list;
+            
+            context.empty();
+            
+            if(theList == null){
+                alert("목록 호출 오류 발생!");
+                return false;
+            }
+            else{
+                
+                jQuery(theList).each(function(index, item){
+                    var output = '';
+                    output += "<optgroup label='"+item.cityName+"' data-ctyCode='"+item.cityCode+"'>";
+                    jQuery.ajax({
+                        url: getContextPath()+"/table/getTrainSttnList.do",
+                        type: "post",
+                        data: {ctyCode:item.cityCode},
+                        dataType: "json",
+                        cache: false,
+                        timeout: 50000,
+                        success: function(data){
+                            
+                            if(data == null){
+                                alert("SttnCode : 목록 호출 오류 발생!");
+                                return false;
+                            }
+                            else{
+                                jQuery(data.list).each(function(index, item){
+                                    output += '<option value="'+item.nodeId+'" class="nodeIds" '
+                                    if(item.nodeId == selNodeId){
+                                        output += 'selected="selected">';
+                                    }
+                                    else{
+                                        output += '>';
+                                    }
+                                    output += item.nodeName;
+                                    output += '</option>';
+                                });
+                                output += "</optgroup>";
+                                context.append(output);
+                            }
+                        },
+                        error: function(){
+                            console.log("SttnCode : Error");
+                        }
+                    });
+                    
+                });
+                // 문서 객체에 추가
+                /*jQuery("#stn_dep").append(output);
+                jQuery("#stn_arr").append(output);*/
+            }
+        },
+        error: function(){
+            context.empty();
+            
+            var out_err="<option>지역정보 로딩실패</option>";
+            
+            context.append(out_err);
+        }
+    });
+    
 }
 
 function getCityNodes(){

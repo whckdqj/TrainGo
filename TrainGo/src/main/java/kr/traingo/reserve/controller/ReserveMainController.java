@@ -29,6 +29,8 @@ import kr.traingo.reserve.domain.TicketCommand;
 import kr.traingo.reserve.domain.TrainCommand;
 import kr.traingo.reserve.service.ReserveService;
 import kr.traingo.table.domain.ResultTimeTableCommand;
+import kr.traingo.table.service.CtyCodeService;
+import kr.traingo.table.service.TrainSttnListService;
 import kr.traingo.table.util.UtilAjax;
 import kr.traingo.util.UtilReserve;
 
@@ -46,21 +48,128 @@ public class ReserveMainController {
 
 
 	@Resource
-	private ReserveService reserveService;		
+	private ReserveService reserveService;
+	@Resource
+	private CtyCodeService ctyCodeService;
+	@Resource
+	private TrainSttnListService trainSttnListService;
 
 
 	//예매 메뉴로 이동
+	// 2017.04.20 16:27 JCB Modify for Mini-Reserve
 	@RequestMapping(value="/resv_main.do", method=RequestMethod.GET)
-	public ModelAndView trainlist(HttpSession session){
-		System.out.println("dd");	
+	public ModelAndView trainlist(HttpSession session
+	                               , @RequestParam(value="startdate", defaultValue="") String departdate
+	                               , @RequestParam(value="depStn", defaultValue="") String depStn
+	                               , @RequestParam(value="arrStn", defaultValue="") String arrStn){
+		/* Definition Area */
+	    ModelAndView mav=new ModelAndView();
+	    Calendar cal=Calendar.getInstance();
+		
+		List<ResultTimeTableCommand> list2 = null;
+        UtilAjax util2 = new UtilAjax();
+        ResultTimeTableCommand tt=null;
+        
+        int count=0;
+        int count1=0;
+        int confirm=reserveService.autotrainconfirm();
+		
+		// Exception Control Routine
+		if(departdate.equals("") || departdate==null){
+		    mav.setViewName("redirect:/home.do");
+		    return mav;
+		}
+		if(depStn.equals("")||depStn==null){
+		    mav.setViewName("redirect:/home.do");
+            return mav;
+		}
+		if(arrStn.equals("")||arrStn==null){
+		    mav.setViewName("redirect:/home.do");
+            return mav;
+		}
+		
+		// Create AutoTrain Table
+		/* Auto Train Control - START */
+        reserveService.deleteAutoTrain();
 
-		ModelAndView mav=new ModelAndView();
+        // build table with available 
+        for(int i=0;i<3;i++){
+            int year = cal.get(Calendar.YEAR);
+            int mon = cal.get(Calendar.MONTH)+1;
+            int day = cal.get(Calendar.DAY_OF_MONTH)+i;          
+            // Build Date
+            String ymd=year+"-"+String.format("%02d", mon)+"-"+String.format("%02d", day);   
+            
+            // get real time-table from server
+            list2 = util2.getTimeTableFromServer(depStn, arrStn, ymd);
+            
+            if(list2.isEmpty()){
+                // No such Train on that Station
+                mav.setViewName("redirect:/home.do");
+                return mav;
+            }
+            
+            for(int z=list2.size()-1;z>=0;z--){
+                // Extract Command-Bean
+                tt=list2.get(z);
+                count=reserveService.ModifyAutoTrain(tt);
+                
+                if(count!=0){
+                    System.out.println("같은 차량이 있어 인덱스 "+z+"번을 포함시키지 않습니다.");
+                }else{
+                    System.out.println(z+"번을 추가합니다");
+                    reserveService.insertAutoTrain(tt);
+                }
 
-		int confirm=reserveService.autotrainconfirm();
+            }
+        }
+        
+        // tlist : TrainNum
+        List<CSCommand> tlist=new ArrayList<CSCommand>();
+        CSCommand train=null;
+        
+        // get TrainNum : Primary Key
+        tlist=reserveService.gettnum();
+        
+        for(int y=tlist.size()-1;y>=0;y--){ 
+            train=tlist.get(y);
+            
+            count1=reserveService.ModifyAutoSeats(train.getTrainnum());
 
+            if(count1!=0){
+                System.out.println("시트가 있어 인덱스 "+y+"번을 삭제합니다");
+                tlist.remove(y);                
+            }else{
+                System.out.println("시트가 없어"+y+"y번 삭제 안합니다.");
+            }
 
-		System.out.println(confirm);
+        }
+        
+        CSCommand seat2=null;
+        // Build Seat Information
+        for(int x=0;x<tlist.size();x++){
+            
+            seat2=tlist.get(x);
 
+            for(int y=1;y<=240;y++){
+                seat2.setSeatnum(y);                    
+                System.out.println("추가될 시트넘버"+seat2.getSeatnum());
+                System.out.println("추가될 시트 트래인넘버"+seat2.getTrainnum());
+
+                reserveService.MakeSeat(seat2);
+            }
+        }
+        /* Auto Train Control - END */
+		
+		// Get TrainSeat
+		TrainCommand command=new TrainCommand();
+		
+		// Set Depart Station
+		// Set Arrive Station
+		// Set Departure Date
+		
+		// Call Train Seat List
+		
 		mav.setViewName("trainlist");
 		mav.addObject("user_id","admin");
 		mav.addObject("autoseat",confirm);
