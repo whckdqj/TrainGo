@@ -22,7 +22,7 @@ public class MemberDetailController {
 		String id = (String)session.getAttribute("userId");
 		int lev = (Integer)session.getAttribute("userLev");
 		//System.out.println((Integer)session.getAttribute("userLev"));
-		
+		 
 		MemberCommand member = memberService.selectMember(id);
 		
 		return new ModelAndView("memberView","member",member);
