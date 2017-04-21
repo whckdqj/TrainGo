@@ -8,6 +8,7 @@ jQuery(document).ready(function(){
 	
 	/* Picker */
 	jQuery("#dept_time").on("click", function(){
+	    console.log("** Clicked **");
 	    showPicker(jQuery("#pickDate"));
 	});
 	
@@ -287,7 +288,6 @@ function getCityNodes(){
 
 // Show Picker
 function showPicker(context){
-    console.log("Activate ShowPick~!!");
     context.show("slide", {}, 500, function(){
         context.datepicker({
             showMonthAfterYear:true
@@ -295,14 +295,22 @@ function showPicker(context){
             ,minDate:0, maxDate:"+2D"
             ,defaultDate: +0
             ,showAnim: "slide"
+            ,autoSize: false
+            /*,altField: "#dept_time"*/
+            ,onSelect: function(dateText, inst){
+                jQuery("#dept_time").val("");
+                jQuery("#dept_time").val(dateText);
+                
+                hidePicker(context);
+            }
         });
     });
 }
 // Hide Picker
 function hidePicker(context){
-    console.log("Activate HidePick~!!");
-    context.empty();
-    context.hide();
+    context.hide("slide", {}, 500, function(){
+        console.log("** Picker Closed **");
+    });
 }
 
 function getContextPath(){
