@@ -76,15 +76,18 @@ public class ReserveMainController {
 		
 		// Exception Control Routine
 		if(departdate.equals("") || departdate==null){
-		    mav.setViewName("redirect:/home.do");
+		    mav.setViewName("trainlist");
+	        mav.addObject("user_id","admin");
 		    return mav;
 		}
 		if(depStn.equals("")||depStn==null){
-		    mav.setViewName("redirect:/home.do");
+		    mav.setViewName("trainlist");
+	        mav.addObject("user_id","admin");
             return mav;
 		}
 		if(arrStn.equals("")||arrStn==null){
-		    mav.setViewName("redirect:/home.do");
+		    mav.setViewName("trainlist");
+	        mav.addObject("user_id","admin");
             return mav;
 		}
 		
