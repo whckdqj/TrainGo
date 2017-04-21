@@ -23,12 +23,11 @@ jQuery(document).ready(function(){
 		getStaionCodes(jQuery("#stn_arr"), jQuery("#area_arr option:selected").val());
 	});
 	
-	jQuery("#startdate").datepicker({
-		showMonthAfterYear:true
-		,dateFormat: "yy-mm-dd"
-		,minDate:0, maxDate:"+2D"
-		,defaultDate: +0
-	});
+	
+	/* Control DatePicker */
+    jQuery("#startdate").on("click", function(){
+        showPicker(jQuery("#resvDatePicker"));
+    });
 	
 	$("#reservation").submit(function(event){
 		// 2017.02.23 JCB Add For Check Station - Available Only Seoul/Busan
@@ -197,6 +196,33 @@ function getCityNodes(){
         }
     });
 	
+}
+
+/* 2017.04.21 17:31 JCB Add for Date-Picker*/
+//Show Picker
+function showPicker(context){
+    context.show("slide", {}, 500, function(){
+        context.datepicker({
+            showMonthAfterYear:true
+            ,dateFormat: "yy-mm-dd"
+            ,minDate:0, maxDate:"+2D"
+            ,defaultDate: +0
+            ,showAnim: "slide"
+            ,autoSize: false
+            ,onSelect: function(dateText, inst){
+                jQuery("#startdate").val("");
+                jQuery("#startdate").val(dateText);
+                
+                hidePicker(context);
+            }
+        });
+    });
+}
+// Hide Picker
+function hidePicker(context){
+    context.hide("slide", {}, 500, function(){
+        // Do Nothing
+    });
 }
 
 function getContextPath(){

@@ -26,7 +26,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/slick.js"></script>
 <!-- CustomScript -->
 <script src="${pageContext.request.contextPath}/resources/js/reservation_hdl.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/table_hdl.js"></script>
+
 </head>
 <body>
 ${user_id}
@@ -113,8 +113,12 @@ ${autoseat}
 			
 			<div class="form-group">
 				<label for="startdate" class="col-xs-2 control-label">출발일</label>
-				<div class="col-xs-3">
-					<input type="text" class="form-control col-xs-2" id="startdate" name="startdate" required="required">
+				<div class="row col-xs-3">
+					<div class="col-xs-12">
+                        <input type="text" class="form-control col-xs-2" id="startdate" name="startdate" required="required" autocomplete="off">
+                    </div>
+                    <div class="col-xs-12" id="resvDatePicker" style="display: none;">
+                    </div>
 				</div>
 				<div class="col-xs-6"></div>
 				<div class="col-xs-1"><input type="submit" class="btn btn-info" id="runCheck" value="자리확인"></div>

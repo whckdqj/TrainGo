@@ -8,7 +8,6 @@ jQuery(document).ready(function(){
 	
 	/* Picker */
 	jQuery("#dept_time").on("click", function(){
-	    console.log("** Clicked **");
 	    showPicker(jQuery("#pickDate"));
 	});
 	
@@ -309,7 +308,7 @@ function showPicker(context){
 // Hide Picker
 function hidePicker(context){
     context.hide("slide", {}, 500, function(){
-        console.log("** Picker Closed **");
+        // Do Nothing
     });
 }
 

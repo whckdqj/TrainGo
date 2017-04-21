@@ -34,8 +34,12 @@
         </div>
         <div class="form-group">
             <label for="dept_time" class="col-xs-2 control-label">출발일</label>
-            <div class="col-xs-4">
-                <input type="text" class="form-control col-xs-2" id="dept_time" name="depplandtime" required="required">
+            <div class=" row col-xs-4">
+                <div class="col-xs-12">
+                    <input type="text" class="form-control col-xs-2" id="dept_time" name="depplandtime" required="required" autocomplete="off">
+                </div>
+                <div class="col-xs-12" id="tableDatePicker" style="display: none;">
+                </div>
             </div>
         </div>
         <div class="form-group">

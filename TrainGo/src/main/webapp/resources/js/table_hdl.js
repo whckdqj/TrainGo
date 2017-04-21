@@ -27,12 +27,10 @@ jQuery(document).ready(function(){
 		getStaionCodes(jQuery("#stn_arr"), jQuery("#area_arr option:selected").val());
 	});
 	
-	jQuery("#dept_time").datepicker({
-		showMonthAfterYear:true
-		,dateFormat: "yy-mm-dd"
-		,minDate:0, maxDate:"+2D"
-		,defaultDate: +0
-	});
+	/* Control DatePicker */
+	jQuery("#dept_time").on("click", function(){
+        showPicker(jQuery("#tableDatePicker"));
+    });
 	
 	jQuery("#table_form").on("submit", function(event){
 		// Not Select - Error
@@ -269,6 +267,33 @@ function getTrKndList(){
 			jQuery("#trKnd").text("네트워크 오류");
 		}
 	});
+}
+
+//Show Picker
+function showPicker(context){
+    context.show("slide", {}, 500, function(){
+        context.datepicker({
+            showMonthAfterYear:true
+            ,dateFormat: "yy-mm-dd"
+            ,minDate:0, maxDate:"+2D"
+            ,defaultDate: +0
+            ,showAnim: "slide"
+            ,autoSize: false
+            /*,altField: "#dept_time"*/
+            ,onSelect: function(dateText, inst){
+                jQuery("#dept_time").val("");
+                jQuery("#dept_time").val(dateText);
+                
+                hidePicker(context);
+            }
+        });
+    });
+}
+// Hide Picker
+function hidePicker(context){
+    context.hide("slide", {}, 500, function(){
+        // Do Nothing
+    });
 }
 
 function getContextPath(){
