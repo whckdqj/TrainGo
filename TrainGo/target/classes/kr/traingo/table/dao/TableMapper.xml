@@ -41,5 +41,9 @@
         SELECT * FROM CTYACCTOTRAINSTTNLIST
         WHERE CITYCODE=#{ctyCode} ORDER BY NODEID ASC
     </select>
+    <select id="selectSttnCodeBySttnCode" parameterType="String" resultType="TrainSttnListCommand">
+        SELECT * FROM CTYACCTOTRAINSTTNLIST
+        WHERE NODEID=#{sttnCode} ORDER BY NODEID ASC
+    </select>
     <!-- Station Code Mapper Setting -->
 </mapper>

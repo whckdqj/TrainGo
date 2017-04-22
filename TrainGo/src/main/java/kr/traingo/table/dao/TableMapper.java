@@ -36,6 +36,7 @@ public interface TableMapper {
     // CRUD - R : Read/Search
     public List<TrainSttnListCommand> selectSttnCodeListAll();
     public List<TrainSttnListCommand> selectSttnCodeByCtyCode(String ctyCode);
+    public TrainSttnListCommand selectSttnCodeBySttnCode(String sttnCode);
     // CRUD - U : Update
     public void updateSttnCodeList(TrainSttnListCommand sttnList);
     // CRUD - D : Delete

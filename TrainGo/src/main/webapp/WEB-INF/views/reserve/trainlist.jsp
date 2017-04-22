@@ -150,6 +150,7 @@ ${autoseat}
             <c:forEach var="resvListCommand" items="${resvList}">
                 <tr>
                     <td>${resvListCommand.trainnum}</td>
+                    <td>${resvListCommand.trainname}</td>
                     <td>${resvListCommand.departsta}</td>
                     <td>${resvListCommand.departtime}</td>
                     <td>${resvListCommand.arrivalsta}</td>

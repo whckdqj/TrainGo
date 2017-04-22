@@ -106,11 +106,11 @@ public class ReserveMainController {
             // get real time-table from server
             list2 = util2.getTimeTableFromServer(depStn, arrStn, ymd);
             
-            if(list2.isEmpty()||list2==null){
+            /*if(list2.isEmpty()||list2==null){
                 // No such Train on that Station
                 mav.setViewName("redirect:/home.do");
                 return mav;
-            }
+            }*/
             
             for(int z=list2.size()-1;z>=0;z--){
                 // Extract Command-Bean
@@ -138,20 +138,17 @@ public class ReserveMainController {
             train=tlist.get(y);
             
             count1=reserveService.ModifyAutoSeats(train.getTrainnum());
-
             if(count1!=0){
                 System.out.println("시트가 있어 인덱스 "+y+"번을 삭제합니다");
                 tlist.remove(y);                
             }else{
                 System.out.println("시트가 없어"+y+"y번 삭제 안합니다.");
             }
-
         }
         
         CSCommand seat2=null;
         // Build Seat Information
         for(int x=0;x<tlist.size();x++){
-            
             seat2=tlist.get(x);
 
             for(int y=1;y<=240;y++){
@@ -168,15 +165,19 @@ public class ReserveMainController {
 		TrainCommand command=new TrainCommand();
 		
 		// Set Depart Station
+		command.setDepartsta(trainSttnListService.selectSttnCodeBySttnCode(depStn).getNodeName());
 		// Set Arrive Station
+		command.setArrivalsta(trainSttnListService.selectSttnCodeBySttnCode(arrStn).getNodeName());
 		// Set Departure Date
+		command.setDeparttime(departdate);
 		
 		// Call Train Seat List
+		List<TrainCommand> trainList = reserveService.getTrainList(command);
 		
 		mav.setViewName("trainlist");
 		mav.addObject("user_id","admin");
 		mav.addObject("autoseat",confirm);
-
+		mav.addObject("resvList",trainList);
 
 		return mav;
 

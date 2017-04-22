@@ -29,6 +29,11 @@ public class TrainSttnListService {
     public List<TrainSttnListCommand> selectSttnCodeByCtyCode(String ctyCode){
         return tableMapper.selectSttnCodeByCtyCode(ctyCode);
     };
+    @Transactional(readOnly=true)
+    public TrainSttnListCommand selectSttnCodeBySttnCode(String sttnCode){
+        return tableMapper.selectSttnCodeBySttnCode(sttnCode);
+    };
+    
     // CRUD - U : Update
     public void updateSttnCodeList(TrainSttnListCommand cityCode){
         
