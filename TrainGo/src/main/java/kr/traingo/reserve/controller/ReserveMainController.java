@@ -60,8 +60,8 @@ public class ReserveMainController {
 	@RequestMapping(value="/resv_main.do", method=RequestMethod.GET)
 	public ModelAndView trainlist(HttpSession session
 	                               , @RequestParam(value="startdate", defaultValue="") String departdate
-	                               , @RequestParam(value="depStn", defaultValue="") String depStn
-	                               , @RequestParam(value="arrStn", defaultValue="") String arrStn){
+	                               , @RequestParam(value="depplaceid", defaultValue="") String depStn
+	                               , @RequestParam(value="arrplaceid", defaultValue="") String arrStn){
 		/* Definition Area */
 	    ModelAndView mav=new ModelAndView();
 	    Calendar cal=Calendar.getInstance();
@@ -106,7 +106,7 @@ public class ReserveMainController {
             // get real time-table from server
             list2 = util2.getTimeTableFromServer(depStn, arrStn, ymd);
             
-            if(list2.isEmpty()){
+            if(list2.isEmpty()||list2==null){
                 // No such Train on that Station
                 mav.setViewName("redirect:/home.do");
                 return mav;

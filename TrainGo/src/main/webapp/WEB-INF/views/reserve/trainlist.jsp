@@ -129,7 +129,7 @@ ${autoseat}
 	
 	
 	
-	<div class="col-xs-12" id="reservationcar" style="display: none;">
+	<div class="col-xs-12" id="reservationcar" <c:if test="${empty resvList}">style="display: none;"</c:if>>
 	<h4 class="text-center"><strong>*** 예약 가능한 차량이 아래 표시됩니다! 확인해주세요 ***</strong></h4>
 	<table class="table table-hover">
 		<thead>
@@ -146,7 +146,20 @@ ${autoseat}
 			</tr>
 		</thead>
 		<tbody id="resertable">
-			
+			<c:if test="${!empty resvList}">
+            <c:forEach var="resvListCommand" items="${resvList}">
+                <tr>
+                    <td>${resvListCommand.trainnum}</td>
+                    <td>${resvListCommand.departsta}</td>
+                    <td>${resvListCommand.departtime}</td>
+                    <td>${resvListCommand.arrivalsta}</td>
+                    <td>${resvListCommand.arrivaltime}</td>
+                    <td>${resvListCommand.charge}</td>
+                    <td>${resvListCommand.seats}</td>
+                    <td><a href="${pageContext.request.contextPath}/selectseat.do?trainnum=${resvListCommand.trainnum}">예매</a></td>
+                </tr>
+            </c:forEach>
+            </c:if>
 		</tbody>
 	</table>
 	</div>

@@ -12,7 +12,7 @@
 <div class="row row_content">
     <div class="col-xs-5">
     <div class="row">
-    	<form action="${pageContext.request.contextPath}/trainseat.do" id="mini_resv">
+    	<form action="${pageContext.request.contextPath}/resv_main.do" id="mini_resv" method="get">
             <fieldset>
             <div class="form-group">
                 <label for="stn_dep" class="col-xs-2 control-label">출발역</label>
@@ -31,9 +31,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="dept_time" class="col-xs-2 control-label">출발일</label>
+            <label for="startdate" class="col-xs-2 control-label">출발일</label>
             <div class="col-xs-10">
-                <input type="text" class="form-control" id="dept_time" name="depplandtime" required="required" autocomplete="off">
+                <input type="text" class="form-control" id="startdate" name="startdate" required="required" autocomplete="off">
             </div>
             <div class="col-xs-10 col-xs-offset-2" id="pickDate">
             </div>
@@ -51,7 +51,6 @@
     <div class="col-xs-7">
     	<p>FAQ 5개내외</p>
     </div>
-    <div class="col-xs-12" id="mini_resv_table" style="display: none;">
         
     </div>
     <div class="col-xs-12">

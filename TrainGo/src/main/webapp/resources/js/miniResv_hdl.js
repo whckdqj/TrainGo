@@ -7,66 +7,22 @@ jQuery(document).ready(function(){
 	getNodes(jQuery("#stn_arr"), "NAT014445");
 	
 	/* Picker */
-	jQuery("#dept_time").on("click", function(){
+	jQuery("#startdate").on("click", function(){
 	    showPicker(jQuery("#pickDate"));
 	});
 	
-	jQuery("#table_form").on("submit", function(event){
+	jQuery("#mini_resv").on("submit", function(event){
 		// Not Select - Error
-		if(jQuery("#area_dep option:selected").val()=="선택하세요"){
-			jQuery("#area_dep").focus();
+		if(jQuery("#stn_dep option:selected").val()=="선택하세요"){
+			jQuery("#stn_dep").focus();
 			event.preventDefault();
 			return false;
 		}
-		if(jQuery("#area_arr option:selected").val()=="선택하세요"){
-			jQuery("#area_arr").focus();
+		if(jQuery("#stn_arr option:selected").val()=="선택하세요"){
+			jQuery("#stn_arr").focus();
 			event.preventDefault();
 			return false;
 		}
-		
-		var ser = jQuery("#table_form").serialize();
-		console.log(ser);
-		jQuery("#timeTable").show();
-		jQuery.ajax({
-			url: getContextPath()+"/table/getStationInfoTable.do",
-			type: "post",
-			data: ser,
-			dataType: "json",
-			cache: false,
-			timeout: 50000,
-			success: function(data){
-			    // List-Up Map
-	            var theList = data.list;
-	            
-				jQuery("#targetTable").show().empty();
-				
-				if(data == null){
-					alert("목록 호출 오류 발생!");
-					return false;
-				}
-				else{
-					jQuery(theList).each(function(index, item){
-						var output = "<tr>";
-						output += "<td>"+item.depPlaceName+"</td>";
-						output += "<td>"+item.arrPlaceName+"</td>";
-						output += "<td>"+item.trainGradeName+"</td>";
-						output += "<td>"+item.depPlandTime+"</td>";
-						output += "<td>"+item.arrPlandTime+"</td>";
-						output += "<td>"+item.adultCharge+"</td>";
-						output += "</tr>";
-						
-						// 문서 객체에 추가
-						jQuery("#targetTable").append(output);
-					});
-				}
-			},
-			error: function(){
-				jQuery("#timeTable").show().empty();
-				jQuery("#timeTable").text("네트워크 오류");
-			}
-		});
-		
-		event.preventDefault();
 	});
 	
 	// Admin Update
@@ -297,8 +253,8 @@ function showPicker(context){
             ,autoSize: false
             /*,altField: "#dept_time"*/
             ,onSelect: function(dateText, inst){
-                jQuery("#dept_time").val("");
-                jQuery("#dept_time").val(dateText);
+                jQuery("#startdate").val("");
+                jQuery("#startdate").val(dateText);
                 
                 hidePicker(context);
             }
