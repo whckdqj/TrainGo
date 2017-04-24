@@ -6,7 +6,9 @@
 	<h1>회원 삭제</h1>
 	<form action="deleteListPro.do">
 			<input type="hidden" name="id" value="${param.id}">
-			<input type="submit" value="삭제할까요?">
-			<input type="button" value="취소" onclick="location.href='${pageContext.request.contextPath}/list.do'">
+			<input type="submit" class="btn btn-danger" value="삭제할까요?">
+			<input type="button" class="btn btn-primary" value="취소" onclick="location.href='${pageContext.request.contextPath}/list.do'">
 	</form>
 </div>
+
+

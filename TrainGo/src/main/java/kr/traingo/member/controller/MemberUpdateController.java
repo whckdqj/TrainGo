@@ -52,7 +52,7 @@ public class MemberUpdateController {
 		//session에 저장된 model을 삭제하는 이벤트 발생
 		status.setComplete();
 		
-		return "redirect:/member/detail.do";
+		return "redirect:/member/memberDetail.do";
 	}
 	
 	

@@ -20,6 +20,7 @@
 		<th>주소</th>
 		<th>상세주소</th>
 		<th>가입일</th>
+		<th>회원등급</th>
     </tr>
     <c:forEach var="member" items="${list}">
 	<tr>
@@ -31,6 +32,7 @@
 	 	<td>${member.address1}</td>
 	 	<td>${member.address2}</td>
 	 	<td>${member.reg_date}</td>
+	 	<td>${member.lev}</td>
 	</tr>
 	</c:forEach>
 </tbody>

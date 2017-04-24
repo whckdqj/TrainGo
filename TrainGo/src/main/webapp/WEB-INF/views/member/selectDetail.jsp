@@ -33,8 +33,12 @@
 				<td><h4>${member.address1}</h4></td>
 			</tr>
 			<tr>
-				<td><h4>나머지 주소</h4></td>
+				<td><h4>상세 주소</h4></td>
 				<td><h4>${member.address2}</h4></td>
+			</tr>
+			<tr>
+				<td><h4>회원등급</h4></td>
+				<td><h4>${member.lev}</h4></td>
 			</tr>
 		</tbody>
 	</table>
@@ -69,8 +73,8 @@
 </div><br>
  --%>
 	<div class="align-center">
-		<input type="button" value="수정" onclick="location.href='member/updateList.do?id=${member.id}'">
-		<input type="button" value="삭제" onclick="location.href='member/deleteList.do?id=${member.id}'">
-		<input type="button" value="목록" onclick="location.href='list.do'">
+		<input type="button" class="btn btn-success" value="수정" onclick="location.href='member/updateList.do?id=${member.id}'">
+		<input type="button" class="btn btn-danger" value="삭제" onclick="location.href='member/deleteList.do?id=${member.id}'">
+		<input type="button" class="btn btn-primary" value="목록" onclick="location.href='list.do'">
 	</div>
 </div>

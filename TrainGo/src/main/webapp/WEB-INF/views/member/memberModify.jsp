@@ -50,8 +50,8 @@
 				</div>
 				<div class="form-group">
        				<div class="col-xs-10 col-xs-offset-1">
-           				<button type="submit" class="btn btn-default">수정</button>
-           				<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/home.do'">홈으로</button>
+           				<button type="submit" class="btn btn-success">수정</button>
+           				<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/home.do'">홈으로</button>
        				</div>
    				</div>
 	</form:form>
