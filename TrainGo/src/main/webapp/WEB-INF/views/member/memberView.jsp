@@ -16,7 +16,7 @@
 	</div>
 	<hr size="1" width="100%">
 	<div class="align-right">
-		<input type="button" value="수정" onclick="location.href='memberModify.do'">
-		<input type="button" value="회원탈퇴" onclick="location.href='memberDelete.do'">
+		<input type="button" class="btn btn-success" value="수정" onclick="location.href='memberModify.do'">
+		<input type="button" class="btn btn-danger" value="회원탈퇴" onclick="location.href='memberDelete.do'">
 	</div>
 </div>

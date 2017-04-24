@@ -17,8 +17,8 @@
 			
 			<div class="form-group">
        				<div class="col-xs-10 col-xs-offset-2">
-       					<input type="submit" class="btn btn-default" value="로그인">
-						<input type="button" class="btn btn-default" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/home.do'">
+       					<input type="submit" class="btn btn-success" value="로그인">
+						<input type="button" class="btn btn-primary" value="홈으로" onclick="location.href='${pageContext.request.contextPath}/home.do'">
        				</div>
    			</div>
 	</form:form>

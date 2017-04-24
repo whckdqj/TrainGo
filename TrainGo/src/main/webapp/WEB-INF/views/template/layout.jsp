@@ -27,6 +27,8 @@
 <script src="${pageContext.request.contextPath}/resources/js/slick.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.themepunch.plugins.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.themepunch.revolution.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/js/confirmId.js"></script>
 <!-- CustomScript -->
 </head>
 <body>

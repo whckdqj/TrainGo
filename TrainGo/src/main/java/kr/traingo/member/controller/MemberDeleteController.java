@@ -63,7 +63,7 @@ public class MemberDeleteController {
 				status.setComplete();
 				//로그아웃 처리
 				session.invalidate();
-				return "redirect:/main/main.do";
+				return "redirect:/home.do";
 			}else{
 				//인증 실패
 				throw new Exception();

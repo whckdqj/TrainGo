@@ -12,8 +12,8 @@
 				<form:errors path="passwd" cssClass="error-color"/>
 			</li>
 			<li class="align-center">
-				<input type="submit" value="탈퇴">
-				<input type="button" value="회원상세정보" onclick="location.href='memberDetail.do'">
+				<input type="submit" class="btn btn-danger" value="탈퇴">
+				<input type="button" class="btn btn-primary" value="회원상세정보" onclick="location.href='memberDetail.do'">
 			</li>
 		</ul>
 	</form:form>

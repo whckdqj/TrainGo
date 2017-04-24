@@ -24,6 +24,6 @@ public class MemberListDeleteController {
 		
 		memberService.deleteMember(id);
 		
-		return "redirect:/main/main.do";
+		return "redirect:/list.do";
 	}
 }

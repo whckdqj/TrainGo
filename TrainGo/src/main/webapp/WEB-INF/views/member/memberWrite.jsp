@@ -7,7 +7,7 @@
 				<div class="form-group">
 					<label for="id" class="col-xs-2 control-label">아이디</label>
 					<form:input path="id"/>
-					<input type="button" class="btn btn-default" id="confirmId" value="ID중복체크">
+					<input type="button" class="btn btn-warning" id="confirmId" value="ID중복체크">
 					<img src="${pageContext.request.contextPath}/resources/img/ajax-loader.gif" 
 					     width="16" height="16" style="display:none;">
 					     <span id="message_id"></span>
@@ -50,13 +50,14 @@
 				</div>
 				<div class="form-group">
        				<div class="col-xs-10 col-xs-offset-2">
-           				<button type="submit" class="btn btn-default">등록</button>
-           				<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/home.do'">홈으로</button>
+           				<button type="submit" class="btn btn-success">등록</button>
+           				<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/home.do'">홈으로</button>
        				</div>
    				</div>
 			
 	</form:form>
-<script>
+	
+<!-- <script>
 $(document).on("keydown", function(event){
 	console.log(event.keyCode);
 	if((event.which || event.keyCode) == 116){
@@ -64,4 +65,4 @@ $(document).on("keydown", function(event){
 	}
 	}
 });
-</script>
+</script> -->
