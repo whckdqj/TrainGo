@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- jQuery -->
 <script src="${pageContext.request.contextPath}/resources/js/jquery-3.1.1.min.js"></script>
@@ -12,7 +12,7 @@
 <div class="row row_content">
     <div class="col-xs-5">
     <div class="row">
-    	<form action="${pageContext.request.contextPath}/resv_main.do" id="mini_resv" method="get">
+        <form action="${pageContext.request.contextPath}/resv_main.do" id="mini_resv" method="get">
             <fieldset>
             <div class="form-group">
                 <label for="stn_dep" class="col-xs-2 control-label">출발역</label>
@@ -49,12 +49,53 @@
     </div>  <!-- Row-End -->
     </div>  <!-- col-xs-5 End -->
     <div class="col-xs-7">
-    	<p>FAQ 5개내외</p>
+        <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th colspan="4">FAQ Info</th>
+                </tr>
+                <tr>
+                    <td>번호</td>
+                    <td>제목</td>
+                    <td>ID</td>
+                    <td>등록일</td>
+                </tr>
+            </thead>
+            <tbody id="faq_mini">
+                <tr>
+                    <td colspan="4"><img src="${pageContext.request.contextPath}/resources/img/ajax-loader.gif" style="margin: 0 auto;"></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
     </div>
-        
-    </div>
+    
     <div class="col-xs-12">
-    	<p>관광지 3~5개만 보임</p>
+        <hr>
+        <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th colspan="6">Randmark Info</th>
+                </tr>
+                <tr>
+					<td>번호</td>
+					<td>지역</td>
+					<td>역명</td>
+					<td>제목</td>
+					<td>ID</td>
+					<td>등록날짜</td>
+                </tr>
+            </thead>
+            <tbody id="info_mini">
+                <tr>
+                    <td colspan="6"><img src="${pageContext.request.contextPath}/resources/img/ajax-loader.gif" style="margin: 0 auto;"></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <hr>
     </div>
 
     <%-- Revoltion Slider --%>
