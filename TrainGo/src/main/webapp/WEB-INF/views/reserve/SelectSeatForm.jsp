@@ -33,6 +33,9 @@
 </head>
 <body>
 		<!-- <div class="col-xs-12 text-center"> -->
+			
+
+		
 		 <div class="form-group">		
 			<h2>예매 현황</h2>
 			<h3 class="text-right">${user_id}님환영합니다.</h3>			
@@ -72,25 +75,18 @@
 				
 				 <c:if test="${status.count%4 eq 0}">				
 		         	 </ul> 
-				</c:if> 
-				
+				</c:if> 				
 
 			</c:forEach>
-
-
-
-
-		
-
+			
 		</div>
-
-
+ 
 
 		<div class="col-xs-12 text-center">${pagingHtml}</div>
 
 		<div class="col-xs-12">
 			<hr>
-			<form class="form-horizontal" id="select_seat" commandName="traincommand" action="${pageContext.request.contextPath}/seatselected.do" method="post">
+			<form:form class="form-horizontal" id="select_seat" commandName="seatselectedcommand"   action="seatselected.do" method="post">
 				<fieldset>
 					<div class="form-group">
 						<label for="id" class="col-xs-2 control-label">ID</label>
@@ -115,10 +111,17 @@
 						</div>
 					</div>
 					<div class="form-group">
+						<label for="mancount" class="col-xs-2 control-label">선택가능인원</label>
+						<div class="col-xs-10">
+							<input class="form-control" type="text" id="humancount"
+								name="humancount" value="${mancount+oldcount+childrencount}" readonly>
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="seatnum" class="col-xs-2 control-label">좌석번호</label>
 						<div class="col-xs-10">
-							<input class="form-control" type="text" id="seatnum"
-								name="seatnum" readonly>
+							<input class="form-control" type="text" id="seatnums"
+								name="seatnums" readonly>
 						</div>
 					</div>
 					<div class="form-group">
@@ -153,13 +156,15 @@
 
 					<!-- 총 비용 추가 3.29 -->
 					<div class="form-group">
-						<label for="" class="col-xs-2 control-label">비용</label>
+						<%-- <label for="" class="col-xs-2 control-label">비용</label>
 						<div class="col-xs-2">
 							<input type="text" class="form-control" id="cost" name="cost"
 								value="${train.charge}" readonly>
-						</div>
+						</div> --%>
+						
+						
 						<label class="col-xs-2 control-label">총 비용:</label><label
-							class="col-xs-2 control-label" id="totalcost">0원</label>
+							class="col-xs-2 control-label" id="totalcost">${costcommand.allcost}</label>
 						<div class="col-xs-2"></div>
 						<div class="col-xs-1">
 							<input type="submit" class="btn btn-info" id="runCheck"
@@ -171,7 +176,7 @@
 						</div>
 					</div>
 				</fieldset>
-			</form>
+			</form:form>
 		</div>
 
 		<%-- Footer Area --%>

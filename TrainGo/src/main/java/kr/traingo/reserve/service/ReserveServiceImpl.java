@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import kr.traingo.reserve.dao.ReserveMapper;
 import kr.traingo.reserve.domain.CSCommand;
 import kr.traingo.reserve.domain.CancelCommand;
-import kr.traingo.reserve.domain.Human;
+import kr.traingo.reserve.domain.RatesCommand;
 import kr.traingo.reserve.domain.SeatCommand;
 import kr.traingo.reserve.domain.SeatSelectedCommand;
 import kr.traingo.reserve.domain.TicketCommand;
@@ -107,13 +107,8 @@ public class ReserveServiceImpl implements ReserveService{
 
 
 
-	@Override
-	public void inserttest(List<Human> human) {
-		System.out.println("¿©±â±îÁø µÊ");
-		reserveMapper.inserttest(human);
-
-	}
-
+	
+	
 
 
 
@@ -171,7 +166,7 @@ public class ReserveServiceImpl implements ReserveService{
 
 
 	@Override
-	public Integer autotrainconfirm() {
+	public int autotrainconfirm() {
 
 		return reserveMapper.autotrainconfirm();
 	}
@@ -179,16 +174,19 @@ public class ReserveServiceImpl implements ReserveService{
 
 
 
-
-
-
-
-	/*@Override
-	public void autotrainon(AutoSettingCommand asc) {
-		reserveMapper.autotrainon(asc);		
+	@Override
+	public List<RatesCommand> getrates() {
+	   return reserveMapper.getrates();
 	}
+	
+	
 
-	 */
+
+
+
+
+
+
 
 
 

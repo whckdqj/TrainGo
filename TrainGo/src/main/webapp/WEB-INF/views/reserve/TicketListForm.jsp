@@ -21,6 +21,7 @@
 				<th>출발시간</th>
 				<th>도착역</th>
 				<th>도착시간</th>
+				<th>할인유형</th>
 				<th>요금</th>
 				<th>취소여부</th>
 			</tr>
@@ -34,10 +35,12 @@
 					<td>${list.departtime}</td>
 					<td>${list.arrivalsta}</td>
 					<td>${list.arrivaltime}</td>
-					<td>${list.charge}</td>
-
-
-
+					
+					<td>${list.discount}</td>
+							
+					<td>${list.cost}</td>
+					
+					
 
 					 <c:choose>
 					 
