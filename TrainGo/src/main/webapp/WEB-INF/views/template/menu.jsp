@@ -53,7 +53,8 @@
 						<li><a href="${pageContext.request.contextPath}/board/informationBoard/infolist.do?code=2">축제 정보</a></li>
 						<li><a href="${pageContext.request.contextPath}/board/informationBoard/infolist.do?code=3">여행 정보</a></li>
 						<li class="divider"></li>
-						<li><a href="${pageContext.request.contextPath}/contents/qna/qnaList.do">Q&nbsp;&amp;&nbsp;A</a></li>
+						<li><a href="${pageContext.request.contextPath}/board/faqBoard/faqlist.do">FAQ</a></li>
+						<li><a href="${pageContext.request.contextPath}/board/freeBoard/freelist.do">자유게시판</a></li>
 					</ul></li>
 			</ul>
 			

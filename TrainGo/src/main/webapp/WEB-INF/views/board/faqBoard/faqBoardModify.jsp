@@ -14,7 +14,7 @@
 		<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/board/informationBoard/infolist.do?code=3'">Sightseeing Information</button>
 		
 		<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqlist.do'">FAQ</button>
-		<button type="button" class="btn btn-default" onclick="location.href='freelist.do'">FREE BOARD</button>
+		<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/board/freeBoard/freelist.do'">FREE BOARD</button>
 		</div>	
 	
 		<form:errors element="div" cssClass="error-color"/>
@@ -66,7 +66,12 @@
 					</c:if>
 				</li>
 				<li>
+					<c:if test="${!empty userId && userId=='admin'}">
 					<input type="submit" value="수정">
+					</c:if>
+					<c:if test="${empty userId}">
+					<input type="submit" value="수정" disabled="disabled">
+					</c:if>
 				</li>
 			</ul>
 		</form:form>

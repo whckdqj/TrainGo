@@ -9,9 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import kr.traingo.board.info.domain.InfoBoardCommand;
-import kr.traingo.board.info.domain.InfoBoardReReplyCommand;
 import kr.traingo.board.info.domain.InfoBoardReplyCommand;
-
 
 public interface InfoBoardMapper {
 	//부모글
@@ -74,12 +72,20 @@ public interface InfoBoardMapper {
 	@Delete("DELETE FROM informationboardreply WHERE num=#{num}")
 	public void deleteReplyByNum(Integer num);
 	
+	//회원 탈퇴시 처리사항
+	//해당 id로 작성된 모든 글의 글 번호를 입수
+	@Select("SELECT num FROM informationboard WHERE id=#{id}")
+	public List<Integer> selectNumById(String id);
 	
-	//댓글의 댓글
-	public List<InfoBoardReReplyCommand> infoListReReply(Map<String,Object> map);
-	public int getListRowCountReReply(Map<String,Object> map);
-	public void insertReReply(InfoBoardReReplyCommand infoBoardReReply);
-	public void updateReReply(InfoBoardReReplyCommand infoBoardReReply);
-	public void deleteReReply(Integer rere_num);
+	//해당 id로 작성된 모든 글에 달린 댓글 삭제
+	public void deleteReplyByNumList(List<Integer> list);
+	
+	//해당 id로 작성된 댓글 삭제
+	@Delete("DELETE FROM informationboardreply WHERE id=#{id}")
+	public void deleteReplyById(String id);
+	
+	//해당 id로 작성된 모든 부모글 삭제
+	@Delete("DELETE FROM informationboard WHERE id=#{id}")
+	public void deleteById(String id);
 	
 }

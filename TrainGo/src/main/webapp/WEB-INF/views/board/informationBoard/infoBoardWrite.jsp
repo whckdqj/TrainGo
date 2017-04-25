@@ -26,7 +26,7 @@
 			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board/informationBoard/infowrite.do?code=3'">Sightseeing Information</button>
 		</c:if>
 		<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqlist.do'">FAQ</button>
-		<button type="button" class="btn btn-default" onclick="location.href='freelist.do'">FREE BOARD</button>
+		<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/board/freeBoard/freelist.do'">FREE BOARD</button>
 		</div>
 		<div class="form-group">
 			<label for="code" class="col-xs-2 control-label">게시판 설정</label>
@@ -142,7 +142,12 @@
 					<input type="file" name="upload10" id="upload10"><br>
 				</li>
 				<li>
+					<c:if test="${!empty userId && userId=='admin'}">
 					<input type="submit" value="전송">
+					</c:if>
+					<c:if test="${empty userId}">
+					<input type="submit" value="전송" disabled="disabled">
+					</c:if>
 				</li>
 			</ul>
 		</form:form>	

@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -36,10 +35,6 @@ public class FAQBoardListController {
 			@RequestParam(value="keyword", defaultValue="")
 			String keyword,
 			HttpServletRequest request){
-		//아래 통합시 제거
-		HttpSession session = request.getSession();
-		session.setAttribute("userId", "admin");
-		//윗글 통합시 제거
 		
 		if(log.isDebugEnabled()){
 			log.debug("<<pageNum>> : " + currentPage);

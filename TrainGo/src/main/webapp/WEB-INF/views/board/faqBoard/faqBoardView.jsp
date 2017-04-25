@@ -13,7 +13,7 @@
 		<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/board/informationBoard/infolist.do?code=3'">Sightseeing Information</button>
 		
 		<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqlist.do'">FAQ</button>
-		<button type="button" class="btn btn-default" onclick="location.href='freelist.do'">FREE BOARD</button>
+		<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/board/freeBoard/freelist.do'">FREE BOARD</button>
 		</div>
 			
 			<ul>
@@ -86,12 +86,30 @@
 		<div class="form-group">
      	    <div class="col-xs-10 col-xs-offset-2">
                 <div class="btn-group btn-group-justified" role="group">
+                    <c:if test="${!empty userId && userId=='admin'}">
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqupdate.do?num=${faqBoardCommand.num}'">수정</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqdelete.do?num=${faqBoardCommand.num}'">삭제</button>
                     </div>
+                    </c:if>
+                    <c:if test="${!empty userId && userId!='admin'}">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqupdate.do?num=${faqBoardCommand.num}'">수정</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqdelete.do?num=${faqBoardCommand.num}'">삭제</button>
+                    </div>
+                    </c:if>
+                     <c:if test="${empty userId}">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqupdate.do?num=${faqBoardCommand.num}'">수정</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqdelete.do?num=${faqBoardCommand.num}'">삭제</button>
+                    </div>
+                    </c:if>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqlist.do'">FAQ게시판</button>
                     </div>
