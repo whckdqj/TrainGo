@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import kr.traingo.board.faq.dao.FAQBoardMapper;
 import kr.traingo.board.faq.domain.FAQBoardCommand;
 
-
 @Service("faqBoardService")
 public class FAQBoardServiceImpl implements FAQBoardService{
 

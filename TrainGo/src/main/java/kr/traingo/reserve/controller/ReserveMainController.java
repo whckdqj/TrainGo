@@ -45,7 +45,6 @@ import kr.traingo.util.UtilReserve;
 @SessionAttributes({"user_id","mancount","childrencount","oldcount","costcommand"})
 public class ReserveMainController {
 
-
 	/* private Logger log = Logger.getLogger(this.getClass());    
     @Resource
     private TheService theService;
@@ -185,9 +184,7 @@ public class ReserveMainController {
 		mav.addObject("resvList",trainList);
 
 		return mav;
-
 	}
-
 
 
 	//트레인정보와 시트 정보를 가져와 줌 

@@ -74,6 +74,7 @@
                                                    , kr.traingo.member.domain
                                                    , kr.traingo.reserve.domain
                                                    , kr.traingo.board.faq.domain
+                                                   , kr.traingo.board.free.domain
                                                    , kr.traingo.board.info.domain"/>  
     </bean>
     <!-- <bean id="dbaSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -88,6 +89,7 @@
                                             , kr.traingo.member.dao
                                             , kr.traingo.reserve.dao
                                             , kr.traingo.board.faq.dao
+                                            , kr.traingo.board.free.dao
                                             , kr.traingo.board.info.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>

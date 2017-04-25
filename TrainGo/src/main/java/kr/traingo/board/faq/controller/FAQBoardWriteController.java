@@ -18,7 +18,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import kr.traingo.board.faq.domain.FAQBoardCommand;
 import kr.traingo.board.faq.service.FAQBoardService;
 
-
 @Controller
 @SessionAttributes("faqBoardCommandId")
 public class FAQBoardWriteController {

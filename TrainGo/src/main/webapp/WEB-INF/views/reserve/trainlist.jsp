@@ -82,11 +82,6 @@
 
 
 
-
-
-
-
-
 					</ul>
 				</div>
 			</div>
@@ -152,7 +147,11 @@
 								<option value="7">7명</option>
 								<option value="8">8명</option>
 								<option value="9">9명</option>
-							</select> <label for="area_arr" class="col-xs-1 control-label">아이</label>
+							</select> 
+							</div>
+							
+							
+							<label for="area_arr" class="col-xs-1 control-label">아이</label>
 							<select class="form-control" id="childrencount"
 								name="childrencount" required="required">
 								<option value="0">0명</option>
@@ -165,7 +164,9 @@
 								<option value="7">7명</option>
 								<option value="8">8명</option>
 								<option value="9">9명</option>
-							</select> <label for="area_arr" class="col-xs-1 control-label">노약자</label>
+							</select> 
+							
+							<label for="area_arr" class="col-xs-1 control-label">노약자</label>
 							<select class="form-control" id="oldcount" name="oldcount"
 								required="required">
 								<option value="0">0명</option>

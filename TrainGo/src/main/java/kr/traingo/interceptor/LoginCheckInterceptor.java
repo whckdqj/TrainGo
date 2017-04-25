@@ -27,7 +27,7 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
     	System.out.println("**This Routine is Executed!!(Out)** : "+lev);
     	
     	if(lev==null || lev.equals("")){
-    		session.setAttribute("adminLev", "0");
+    		session.setAttribute("userLev", "0");
     		System.out.println("**This Routine is Executed!!(If-1)**");
     		response.sendRedirect(request.getContextPath()+"/home.do");
     		return false;

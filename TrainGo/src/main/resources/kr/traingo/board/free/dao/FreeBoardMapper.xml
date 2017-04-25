@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+    
+<mapper namespace="kr.traingo.board.free.dao.FreeBoardMapper">
+	<select id="freeList" parameterType="map" resultType="freeBoardCommand">
+		SELECT *
+		  FROM(SELECT
+		         a.*,
+		           rownum rnum
+		         FROM (SELECT
+		                 *
+		                 From freeboard left join(
+		                     SELECT num,count(*) reply_cnt from freeboardreply group by num)reply
+		                        on
+		                     freeboard.num=reply.num
+		   <where>
+		   <if test="keyword != '' and keyfield == 'free_title'">
+		   	   free_title LIKE '%' || #{keyword} || '%'
+		   </if>
+		   <if test="keyword != '' and keyfield == 'id'">
+		   	   id LIKE '%' || #{keyword} || '%'
+		   </if>
+		   <if test="keyword != '' and keyfield == 'free_content'">
+		   	   free_content LIKE '%' || #{keyword} || '%'
+		   </if>
+		   <if test="keyword != '' and keyfield == 'all'">
+		   	   free_title LIKE '%' || #{keyword} || '%' or
+		   	   id LIKE '%' || #{keyword} || '%' or
+		   	   free_content LIKE '%' || #{keyword} || '%'
+		   </if>
+		   </where>
+		 order by freeboard.num DESC)a)
+		 <![CDATA[
+		 WHERE rnum >= #{start} AND rnum <= #{end}
+		 ]]>	
+	</select>
+
+	<select id="getListRowCount" parameterType="map" resultType="integer">
+		SELECT
+		    count(*)
+		FROM freeboard
+		<where>
+		   <if test="keyword != '' and keyfield == 'free_title'">
+		   	   free_title LIKE '%' || #{keyword} || '%'
+		   </if>
+		   <if test="keyword != '' and keyfield == 'id'">
+		   	   id LIKE '%' || #{keyword} || '%'
+		   </if>
+		   <if test="keyword != '' and keyfield == 'free_content'">
+		   	   free_content LIKE '%' || #{keyword} || '%'
+		   </if>
+		   <if test="keyword != '' and keyfield == 'all'">
+		   	   free_title LIKE '%' || #{keyword} || '%' or
+		   	   id LIKE '%' || #{keyword} || '%' or
+		   	   free_content LIKE '%' || #{keyword} || '%'
+		   </if>
+		</where>
+	</select>
+
+	<select id="freeListReply" parameterType="map" resultType="freeBoardReplyCommand">
+	
+		SELECT
+		   re_num,
+		   re_content,
+		   to_char(re_register, 'YYYY-MM-MM HH24:MI:SS') re_register,
+		   num,
+		   id,
+		   re_ip
+		  FROM(SELECT
+		           a.*,
+		           rownum rnum
+		          FROM(SELECT
+		                  *
+		                 FROM freeboardreply
+		                 WHERE num = #{num}
+		                 ORDER BY re_num DESC)a)
+		                 
+		<![CDATA[
+			WHERE rnum >= #{start} AND rnum <= #{end}
+		]]>  
+	
+	</select>
+	<delete id="deleteReplyByNumList" parameterType="list">
+		DELETE FROM freeboardreply WHERE num in
+		<foreach collection="list" item="num"
+		              open="(" separator="," close=")">
+			#{num}              
+		</foreach>
+	</delete>
+
+
+</mapper>

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import kr.traingo.board.info.dao.InfoBoardMapper;
 import kr.traingo.board.info.domain.InfoBoardCommand;
-import kr.traingo.board.info.domain.InfoBoardReReplyCommand;
 import kr.traingo.board.info.domain.InfoBoardReplyCommand;
 
 @Service("infoBoardService")
@@ -87,33 +86,4 @@ public class InfoBoardServiceImpl implements InfoBoardService {
 		infoBoardMapper.deleteReply(re_num);
 	}
 
-	@Override
-	public List<InfoBoardReReplyCommand> infoListReReply(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getListRowCountReReply(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-    @Override
-    public void insertReReply(InfoBoardReReplyCommand infoBoardReReply) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void updateReReply(InfoBoardReReplyCommand infoBoardReReply) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void deleteReReply(Integer rere_num) {
-        // TODO Auto-generated method stub
-        
-    }
 }
