@@ -10,6 +10,10 @@ public class TrainCommand {
 	private String trainname;
 	private String charge;
 	
+
+	
+	
+	
 	//새로 만들면서 추가
 	private String rpossible;		
 	public String getRpossible() {

@@ -1,47 +1,71 @@
 $(function(){
 	var clickseat="";
-	var clickseat2="";
-	var clickseat3="";
-	var output="";
-
-	$('.seats').css('color','#0000ff');
+	var cancelseat="";		
+	var su=0;
+	var count=$('#humancount').val();
+	var totalcost=$('#totalcost').text();
+	$("#totalcost").text(numberWithCommas(totalcost)+"원"); 
+	
+	
+	
+			
+	//var cost=$("#cost").val();	
+//	cost=Number(cost.toString().replace(",",""));
+	
+	
+	
+	function numberWithCommas(x) {
+	    x = x.toString();
+	    var pattern = /(-?\d+)(\d{3})/;
+	    while (pattern.test(x))
+	        x = x.replace(pattern, "$1,$2");
+	    return x;
+	}	
+		
+	
+	$('.seat').css('color','#0000ff');
 	$(document).on('click','.seat',function(){   
-		output="";
-
-		if(clickseat==""){    
-			clickseat=$(this).text()+", "; 
-			$(this).css('color','red');
-		}else if(clickseat2==""){
-			clickseat2=$(this).text()+", ";
-			$(this).css('color','red');
-		}else if(clickseat3==""){
-			clickseat3=$(this).text();
-			$(this).css('color','red');
-		}else{
+		if(su==count){
 			alert("더 이상 선택이 불가합니다.");
-			return false;
+			return false;		
+			
 		}
-		output=clickseat+clickseat2+clickseat3; 
-		$("#seatnum").val(output);
-
+		
+		clickseat+=$(this).text()+" "; 
+		++su;
+		$('#humancount').val(count-su);
+		$(this).css('color','red');		
+				
+		
+		$("#seatnums").val(clickseat);		
 		$(this).attr('class','off');   
+				
+		/*$("#totalcost").text(numberWithCommas(cost*su)+"원"); */
+
+		
+		
 	});
 
 
-	$(document).on('click','.off',function(){
-		output="";
-
-		if(clickseat==$(this).text()+", "){    
-			clickseat="";     
-		}else if(clickseat2==$(this).text()+", "){
-			clickseat2="";
-		}else if(clickseat3==$(this).text()){
-			clickseat3=""; } 
-
-		output=clickseat+clickseat2+clickseat3; 
-		$("#seatnum").val(output); 
-		$(this).css('color','#0000ff') 
+	$(document).on('click','.off',function(){	
+				
+		
+		cancelseat="";
+		cancelseat=$(this).text()+" ";
+				
+		
+        clickseat=clickseat.toString().replace(cancelseat,""); 
+        
+       
+		--su;	
+		$('#humancount').val(count-su);
+		
+		$("#seatnums").val(clickseat); 
+		$(this).css('color','#0000ff'); 		
 		$(this).attr('class','seat');
+		
+		
+	/*	$("#totalcost").text(numberWithCommas(cost*su)+"원"); */
 
 	});
 
@@ -49,9 +73,19 @@ $(function(){
 
 	$('#select_seat').submit(function(){  
 		var ser = jQuery("#select_seat").serialize();
-		console.log(ser);
-		alert(ser);
-		if($("#seatnum").val()==""){
-			alert("좌석을 선택하세요!!");   
-			return false;  }  });
+		
+		
+		
+		 if(su!=count){
+			   alert("좌석을 더 선택하셔야 합니다.")
+			   return false;
+		   }	
+	
+	
+	
+	
+	});
+	
+	    
+	
 });		
