@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<script src="${pageContext.request.contextPath}/resources/js/board_hdl.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/info_board_reply_hdl.js"></script>
 <div class="page-main-style">
 	<form:form action="infodetail.do" commandName="infoBoardCommand" cssClass="form-horizontal" enctype="multipart/form-data" id="write_form" method="post">
 	<legend>Information</legend>
@@ -28,7 +28,7 @@
 				<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board/informationBoard/infolist.do?code=3'">Sightseeing Information</button>
 			</c:if>
 			<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqlist.do'">FAQ</button>
-			<button type="button" class="btn btn-default" onclick="location.href='freelist.do'">FREE BOARD</button>
+			<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/board/freeBoard/freelist.do'">FREE BOARD</button>
 			</div>
 			
 			<ul>
@@ -187,12 +187,30 @@
 		<div class="form-group">
      	    <div class="col-xs-10 col-xs-offset-2">
                 <div class="btn-group btn-group-justified" role="group">
+                	<c:if test="${!empty userId && userId=='admin'}">
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/board/informationBoard/infoupdate.do?num=${infoBoardCommand.num}'">수정</button>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/board/informationBoard/infodelete.do?num=${infoBoardCommand.num}'">삭제</button>
                     </div>
+                    </c:if>
+                    <c:if test="${!empty userId && userId!='admin'}">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/board/informationBoard/infoupdate.do?num=${infoBoardCommand.num}'">수정</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/board/informationBoard/infodelete.do?num=${infoBoardCommand.num}'">삭제</button>
+                    </div>
+                    </c:if>
+                    <c:if test="${empty userId}">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/board/informationBoard/infoupdate.do?num=${infoBoardCommand.num}'">수정</button>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-danger" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/board/informationBoard/infodelete.do?num=${infoBoardCommand.num}'">삭제</button>
+                    </div>
+                    </c:if>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/board/informationBoard/infolist.do?code=${infoBoardCommand.code}'">게시판</button>
                     </div>
@@ -222,10 +240,11 @@
 			</c:if>	
 		</form>
 	    </div>
-		<!-- 목록 출력 -->
+		<!-- 댓글 목록 출력 -->
 		<div id="output"></div>
 		<div class="paging_button" style="display:none;">
 			<input type="button" value="다음글 보기">
+		
 		</div>
 		<div id="loading" style="display:none;">
 			<img src="${pageContext.request.contextPath}/resources/images/ajax-loader.gif">
@@ -241,6 +260,22 @@
 					<span class="letter-count">300/300</span>
 				</div>  
 				<div id="mre_second" class="align-right">
+					<input type="submit" value="수정">
+					<input type="button" value="취소" class="re-reset">
+				</div>
+				<hr size="1" noshade width="96%">
+			</form>
+		</div>
+		<div id="modify_div" style="display:none;">
+			<form id="mrere_form">
+				<input type="hidden" name="rere_num" id="mrere_num">
+				<input type="hidden" name="id" id="muserId">
+				<textarea rows="3" cols="50" name="rere_content"
+				  id="mrere_content" class="rep-content"></textarea>
+				<div id="mrere_first">
+					<span class="letter-count">300/300</span>
+				</div>  
+				<div id="mrere_second" class="align-right">
 					<input type="submit" value="수정">
 					<input type="button" value="취소" class="re-reset">
 				</div>

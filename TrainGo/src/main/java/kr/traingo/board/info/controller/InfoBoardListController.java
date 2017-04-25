@@ -38,9 +38,18 @@ public class InfoBoardListController {
 								int serviceCode,
 								HttpServletRequest request){
 		HttpSession session = request.getSession();
-		//아래 통합시 제거
-		session.setAttribute("userId", "admin");
-		//윗글 통합시 제거
+		
+		/*//아래 통합시 대폭 수정 필요
+		
+		if(session.getAttribute("userId")==null){
+			InfoBoardCommand infoBoardCommand = new InfoBoardCommand();
+			session.setAttribute("userId", infoBoardCommand.getId());
+		}else if(session.getAttribute("userId")!=null){
+			session.setAttribute("userId", "admin");
+		}
+		
+		//윗글 통합시 대폭 수정 필요
+*/		
 		if(log.isDebugEnabled()){
 			log.debug("<<pageNum>> : " + currentPage);
 			log.debug("<<keyfield>> : " + keyfield);

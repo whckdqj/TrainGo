@@ -36,4 +36,8 @@ public interface FAQBoardMapper {
 	@Delete("DELETE FROM faqboard WHERE num=#{num}")
 	public void delete(Integer num);
 	
+	//해당 id로 작성된 모든 부모글 삭제
+	@Delete("DELETE FROM faqboard WHERE id=#{id}")
+	public void deleteById(String id);
+	
 }

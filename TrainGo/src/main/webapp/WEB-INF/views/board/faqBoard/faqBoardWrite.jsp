@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="page-main-style">
 	<form:form action="faqwrite.do" commandName="faqBoardCommandId" cssClass="form-horizontal" enctype="multipart/form-data" id="write_form" method="post">
@@ -13,7 +14,7 @@
 		<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/board/informationBoard/infolist.do?code=3'">Sightseeing Information</button>
 		
 		<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqlist.do'">FAQ</button>
-		<button type="button" class="btn btn-default" onclick="location.href='freelist.do'">FREE BOARD</button>
+		<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/board/freeBoard/freelist.do'">FREE BOARD</button>
 		</div>	
 		
 	
@@ -46,7 +47,13 @@
 					<input type="file" name="upload04" id="upload04"><br>
 				</li>
 				<li>
+					<c:if test="${!empty userId && userId=='admin'}">
 					<input type="submit" value="전송">
+					</c:if>
+					<c:if test="${empty userId}">
+					<input type="submit" value="전송" disabled="disabled">
+					</c:if>
+					
 				</li>
 			</ul>
 	</form:form>		

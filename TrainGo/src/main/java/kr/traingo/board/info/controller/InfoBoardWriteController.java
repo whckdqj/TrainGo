@@ -31,7 +31,7 @@ public class InfoBoardWriteController {
 	public String form(HttpSession session, Model model, HttpServletRequest request, @RequestParam("code")int code){
 		String id = (String)session.getAttribute("userId");
 		String ip = request.getRemoteAddr();
-		//System.out.println(id + this.toString());
+		
 		if(log.isDebugEnabled()){
 			log.debug("code : " + code);
 		}
@@ -41,8 +41,6 @@ public class InfoBoardWriteController {
 		infoBoardCommandId.setIp(ip);
 		infoBoardCommandId.setCode(code);
 		model.addAttribute("infoBoardCommandId", infoBoardCommandId);
-		//System.out.println(code);
-		//System.out.println(infoBoardCommandId);
 		return "infoBoardWrite";
 	}
 	
@@ -56,23 +54,22 @@ public class InfoBoardWriteController {
 		if(log.isDebugEnabled()){
 			log.debug("<<infoBoardCommand>> : " + infoBoardCommand);
 		}
-		
-		System.out.println(infoBoardCommand.getCode());
-		
+
 		//유효성 체크
 		if(result.hasErrors()){
 			return "infoBoardWrite";
 		}
-		//System.out.println(infoBoardCommand);
 		//글쓰기 작업
 		infoBoardService.insert(infoBoardCommand);
 		status.setComplete();
 		
+		//System.out.println(infoBoardCommand);
+		
 		//세션에 코드 부여
 		HttpSession session = request.getSession();
 		session.setAttribute("code", infoBoardCommand.getCode());
+		//session.setAttribute("userId", infoBoardCommand.getId());
 		
-		//System.out.println(code);
 		return "redirect:/board/informationBoard/infolist.do";
 	}
 }

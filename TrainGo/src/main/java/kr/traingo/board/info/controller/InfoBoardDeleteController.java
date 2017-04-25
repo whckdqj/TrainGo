@@ -43,7 +43,7 @@ public class InfoBoardDeleteController {
 		
 		session = request.getSession();
 		session.setAttribute("code", infoBoardCommand.getCode());
-		
+		//session.setAttribute("userId", infoBoardCommand.getId());
 		
 		return "redirect:/board/informationBoard/infolist.do";
 	}

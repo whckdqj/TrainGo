@@ -6,7 +6,6 @@ import java.util.Map;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.traingo.board.info.domain.InfoBoardCommand;
-import kr.traingo.board.info.domain.InfoBoardReReplyCommand;
 import kr.traingo.board.info.domain.InfoBoardReplyCommand;
 
 @Transactional
@@ -32,12 +31,4 @@ public interface InfoBoardService {
 		public void updateReply(InfoBoardReplyCommand infoBoardReply);
 		public void deleteReply(Integer re_num);
 		
-		//¥Ò±€¿« ¥Ò±€
-		@Transactional(readOnly=true)
-		public List<InfoBoardReReplyCommand> infoListReReply(Map<String,Object> map);
-		@Transactional(readOnly=true)
-		public int getListRowCountReReply(Map<String,Object> map);
-		public void insertReReply(InfoBoardReReplyCommand infoBoardReReply);
-		public void updateReReply(InfoBoardReReplyCommand infoBoardReReply);
-		public void deleteReReply(Integer rere_num);
 }

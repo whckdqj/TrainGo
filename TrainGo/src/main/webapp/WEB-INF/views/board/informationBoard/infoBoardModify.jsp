@@ -8,7 +8,6 @@
 	<c:if test="${command.code==1}"><h4>Food Information</h4></c:if>
 	<c:if test="${command.code==2}"><h4>Festival Information</h4></c:if>
 	<c:if test="${command.code==3}"><h4>Sightseeing Information</h4></c:if>
-	<input type="hidden" name="code" value="${command.code}">
 	<input type="hidden" name="id" value="${userId}">
 		<div class="form-group">
 		<c:if test="${command.code==1}">
@@ -27,7 +26,7 @@
 			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board/informationBoard/infolist.do?code=3'">Sightseeing Information</button>
 		</c:if>
 		<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqlist.do'">FAQ</button>
-		<button type="button" class="btn btn-default" onclick="location.href='freelist.do'">FREE BOARD</button>
+		<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/board/freeBoard/freelist.do'">FREE BOARD</button>
 		</div>
 		<div class="form-group">
 			<label for="code" class="col-xs-2 control-label">게시판 설정</label>
@@ -191,8 +190,12 @@
 					</c:if>
 				</li>
 				<li>
-					<input type="hidden" name="code" value="${code}">
+					<c:if test="${!empty userId && userId=='admin'}">
 					<input type="submit" value="수정">
+					</c:if>
+					<c:if test="${empty userId}">
+					<input type="submit" value="수정" disabled="disabled">
+					</c:if>
 				</li>
 			</ul>
 			<div class="col-xs-10 col-xs-offset-2">
