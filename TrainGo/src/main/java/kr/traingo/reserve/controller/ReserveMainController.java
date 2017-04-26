@@ -188,7 +188,7 @@ public class ReserveMainController {
 
 
 	//트레인정보와 시트 정보를 가져와 줌 
-		@RequestMapping("trainseat.do")
+		@RequestMapping("/trainseat.do")
 		@ResponseBody  
 		public Map<String,Object> trainseat(@RequestParam(value="startdate") String departdate,Model model,@RequestParam(value="mancount") int mancount,@RequestParam(value="childrencount") int childrencount,@RequestParam(value="oldcount") int oldcount){
 
