@@ -75,7 +75,8 @@
                                                    , kr.traingo.reserve.domain
                                                    , kr.traingo.board.faq.domain
                                                    , kr.traingo.board.free.domain
-                                                   , kr.traingo.board.info.domain"/>  
+                                                   , kr.traingo.board.info.domain
+                                                   , kr.traingo.ticketlist.domain"/>  
     </bean>
     <!-- <bean id="dbaSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dbaDataSource"/>
@@ -90,7 +91,8 @@
                                             , kr.traingo.reserve.dao
                                             , kr.traingo.board.faq.dao
                                             , kr.traingo.board.free.dao
-                                            , kr.traingo.board.info.dao"/>
+                                            , kr.traingo.board.info.dao
+                                            , kr.traingo.ticketlist.dao"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
     <!-- <bean id="dbaScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">

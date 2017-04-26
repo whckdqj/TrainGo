@@ -393,7 +393,7 @@ public class ReserveMainController {
 
 	
 		
-		@RequestMapping(value="/ticketlist.do")
+		/*@RequestMapping(value="/ticketlist.do")
 		public ModelAndView ticketlist(@RequestParam(value="user_id") String booker){
 
 
@@ -440,7 +440,7 @@ public class ReserveMainController {
 			return "redirect:/ticketlist.do";
 
 
-		}
+		}*/
 
 
 

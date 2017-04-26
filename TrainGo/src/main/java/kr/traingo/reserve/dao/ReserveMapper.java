@@ -47,7 +47,7 @@ public List<TicketCommand> getTicketList(String id);
 public void CancelTicket(TicketCommand command);
 
 
-@Update("update seats set booker=#{booker} where trainnum=#{trainnum} and seatnum=#{seatnum}")
+@Update("update seats set booker=#{booker,jdbcType=VAHCHAR} where trainnum=#{trainnum} and seatnum=#{seatnum}")
 public void CancelSeat(CancelCommand command);
 
 

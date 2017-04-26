@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.traingo.ticketlist.dao.TicketListMapper">
+  <select id="ticketlist" parameterType="map" resultType="ticketListCommand" >
+    	select * from ticketlist t, autotrain a where t.TRAINNUM = a.TRAINNUM and id=#{id} and cancel=#{cancel} order by t.reg_date desc
+    	<!-- select  a.*,t.cancel cancel,t.id id,t.ticketnum ticketnum,to_char(t.reg_date, 'YYYY-MM-DD HH24:MI:SS') reg_date from ticketlist t, autotrain a where t.TRAINNUM = a.TRAINNUM and id=#{id} and cancel=#{cancel} -->
+    </select> 
+    
+</mapper>
