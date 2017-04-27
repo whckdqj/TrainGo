@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.traingo.board.faq.domain.FAQBoardCommand;
 import kr.traingo.board.faq.service.FAQBoardService;
 
-
 @Controller
 @SessionAttributes("command")
 public class FAQBoardUpdateController {

@@ -5,7 +5,7 @@ import java.util.List;
 import kr.traingo.reserve.domain.AutoSettingCommand;
 import kr.traingo.reserve.domain.CSCommand;
 import kr.traingo.reserve.domain.CancelCommand;
-import kr.traingo.reserve.domain.Human;
+import kr.traingo.reserve.domain.RatesCommand;
 import kr.traingo.reserve.domain.SeatCommand;
 import kr.traingo.reserve.domain.SeatSelectedCommand;
 import kr.traingo.reserve.domain.TicketCommand;
@@ -30,18 +30,17 @@ public interface ReserveService {
 	
 	public void insertAutoTrain(ResultTimeTableCommand resultTimeTableCommand);
 	
-	public int ModifyAutoSeats(int trainnum);
+	public int ModifyAutoSeats(int trainnum);	
 	
-	public void inserttest(List<Human> human);
+	
 	public List<CSCommand> gettnum();
 	public void MakeSeat(CSCommand seat); 
 	public void autotrainon();
 	public void autotrainoff();
-	public Integer autotrainconfirm();
+	public int autotrainconfirm();
 	
+	public List<RatesCommand> getrates();
 	
-	
-	/*public void autotrainon(AutoSettingCommand asc);*/
 	 
 	
 	

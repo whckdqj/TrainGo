@@ -12,7 +12,7 @@
 		<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/board/informationBoard/infolist.do?code=3'">Sightseeing Information</button>
 		
 		<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqlist.do'">FAQ</button>
-		<button type="button" class="btn btn-default" onclick="location.href='freelist.do'">FREE BOARD</button>
+		<button type="button" class="btn btn-default" onclick="location.href='${pageContext.request.contextPath}/board/freeBoard/freelist.do'">FREE BOARD</button>
 		</div>	
 		
 		<div class="search">
@@ -56,7 +56,15 @@
          <div class="col-xs-10 col-xs-offset-2">
                 <div class="btn-group btn-group-justified" role="group">
                     <div class="btn-group" role="group">
+                    	<c:if test="${!empty userId && userId=='admin'}">
                         <button type="button" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqwrite.do'">글쓰기</button>
+                        </c:if>
+                        <c:if test="${!empty userId && userId!='admin'}">
+                        <button type="button" class="btn btn-danger" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqwrite.do'">글쓰기</button>
+                        </c:if>
+                        <c:if test="${empty userId}">
+                        <button type="button" class="btn btn-danger" disabled="disabled" onclick="location.href='${pageContext.request.contextPath}/board/faqBoard/faqwrite.do'">글쓰기</button>
+                        </c:if>
                     </div>
                     <div class="btn-group" role="group">
                         <button type="button" class="btn btn-danger" onclick="location.href='${pageContext.request.contextPath}/home.do'">홈으로</button>

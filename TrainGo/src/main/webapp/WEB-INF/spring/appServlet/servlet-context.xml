@@ -85,6 +85,7 @@
                 <beans:value>/WEB-INF/tiles-def/board.xml</beans:value>
                 <beans:value>/WEB-INF/tiles-def/table.xml</beans:value>
                 <beans:value>/WEB-INF/tiles-def/reserve.xml</beans:value>
+                <beans:value>/WEB-INF/tiles-def/ticketView.xml</beans:value>
             </beans:list>
         </beans:property>
     </beans:bean>
@@ -100,8 +101,34 @@
     <!-- Interceptor Controll -->
     <interceptors>
         <interceptor>
-            <mapping path="/pageAdmin.do"/>
+            <mapping path="/member/memberDelete.do"/>
+            <mapping path="/member/memberDetail.do"/>
+            <mapping path="/member/memberModify.do"/>
+            <mapping path="/resv_main.do"/>
+            <mapping path="/trainseat.do"/>
+            <mapping path="/selectseat.do"/>
+            <mapping path="/seatselected.do"/>
+            <mapping path="/autotrain.do"/>
+            <mapping path="/board/faqBoard/faqdelete.do"/>
+            <mapping path="/board/faqBoard/faqupdate.do"/>
+            <mapping path="/board/faqBoard/faqwrite.do"/>
+            <mapping path="/board/informationBoard/infodelete.do"/>
+            <mapping path="/board/informationBoard/infoupdate.do"/>
+            <mapping path="/board/informationBoard/infowrite.do"/>
+            <mapping path="/passwdConfirm.do"/>
+            <mapping path="/ticketlist.do"/>
+            <mapping path="/reserveF.do"/>
+            <mapping path="/cancel.do"/>
+            <mapping path="/cancelConfirm.do"/>
             <beans:bean class="kr.traingo.interceptor.LoginCheckInterceptor"/>
+        </interceptor>
+        <interceptor>
+            <mapping path="/member/deleteList.do"/>
+            <mapping path="/member/deleteListPro.do"/>
+            <mapping path="/detailList.do"/>
+            <mapping path="/list.do"/>
+            <mapping path="/member/updateList.do"/>
+            <beans:bean class="kr.traingo.interceptor.AdminCheckInterceptor"/>
         </interceptor>
     </interceptors>
 </beans:beans>

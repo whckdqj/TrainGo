@@ -23,26 +23,35 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
         }
     	
     	HttpSession session = request.getSession();
-    	String lev = (String)session.getAttribute("adminLev");
-    	System.out.println("**This Routine is Executed!!(Out)** : "+lev);
+    	String id = (String)session.getAttribute("userId");
+    	int lev = Integer.valueOf(session.getAttribute("userLev")+"");
     	
-    	if(lev==null || lev.equals("")){
-    		session.setAttribute("adminLev", "0");
-    		System.out.println("**This Routine is Executed!!(If-1)**");
-    		response.sendRedirect(request.getContextPath()+"/home.do");
+    	if(lev==0 && (id==null || id.equals(""))){
+    	    // ID : X / Lev : X
+    	    session.invalidate();
+    		response.sendRedirect(request.getContextPath()+"/member/memberLogin.do");
     		return false;
     		
     	}
-    	else if(lev.equals("0")){
-    		System.out.println("**This Routine is Executed!!(If-2)**");
-    		response.sendRedirect(request.getContextPath()+"/home.do");
+    	else if((id==null || id.equals("")) && lev==0){
+    	    // ID : X / Lev : 0
+    	    session.invalidate();
+    		response.sendRedirect(request.getContextPath()+"/pageError.do");
     		return false;
     	}
-    	else if(lev.equals("1")){
-    		return true;
+    	else if((id==null || id.equals("")) && lev==1){
+    	    // ID : X / Lev : 1
+    	    session.invalidate();
+            response.sendRedirect(request.getContextPath()+"/pageError.do");
+    		return false;
     	}
-    	else{
+        else if(id!=null && (lev==0 || lev==1)){
             return true;
+        }
+    	else{
+    	    session.invalidate();
+            response.sendRedirect(request.getContextPath()+"/member/memberLogin.do");
+            return false;
     	}
     }
 }

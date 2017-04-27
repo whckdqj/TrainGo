@@ -204,6 +204,21 @@ div.bus {
     background: url(../img/seat_bg.gif) no-repeat 0 0;
 }
 
+/* 4.27 추가*/
+div.memberinfo {
+    background: url(../img/stw-2.jpg) no-repeat 0 0; 
+    background-position: right center;
+
+      
+}
+
+
+
+
+
+
+
+
 /* 3.29 추가  */
 ul.seats{
 	width:60px;
