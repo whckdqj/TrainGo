@@ -38,14 +38,14 @@
 	<resources mapping="/resources/**" location="/resources/" />
     
     <!-- Exception Configuration : Order(0) -->
-    <beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <!-- <beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <beans:property name="order" value="0"/>
         <beans:property name="exceptionMappings">
             <beans:props>
                 <beans:prop key="java.lang.Throwable">pageError</beans:prop>
             </beans:props>
         </beans:property>
-    </beans:bean>
+    </beans:bean> -->
     
     <!-- File Download Controll : Order(0) -->
     <beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">

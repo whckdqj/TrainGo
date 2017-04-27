@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.traingo.board.faq.domain.FAQBoardCommand;
@@ -72,5 +73,48 @@ public class FAQBoardListController {
 		return mav;
 	}
 	
-	
+	@RequestMapping("/board/faqBoard/miniFaq.do")
+	@ResponseBody
+    public Map<String, Object> miniProcess(
+            @RequestParam(value="pageNum", defaultValue="1")
+            int currentPage,
+            @RequestParam(value="keyfield", defaultValue="")
+            String keyfield,
+            @RequestParam(value="keyword", defaultValue="")
+            String keyword,
+            HttpServletRequest request){
+        
+        if(log.isDebugEnabled()){
+            log.debug("<<pageNum>> : " + currentPage);
+            log.debug("<<keyfield>> : " + keyfield);
+            log.debug("<<keyword>> : " + keyword);
+        }
+        
+        Map<String,Object> map = new HashMap<String,Object>();
+        Map<String,Object> mapJson = new HashMap<String,Object>();
+        map.put("keyfield", keyfield);
+        map.put("keyword", keyword);
+        
+        //System.out.println(faqBoardService.getListRowCount(map));
+        
+        int count = faqBoardService.getListRowCount(map);
+        
+        if(log.isDebugEnabled()){
+            log.debug("<<count>> : " + count);
+        }
+        
+        PagingUtil page = new PagingUtil(keyfield,keyword,currentPage,count, 3,pageCount,"miniFaq.do");
+        map.put("start", page.getStartCount());
+        map.put("end", page.getEndCount());
+        
+        List<FAQBoardCommand> faqList = null;
+        if(count > 0){
+            faqList = faqBoardService.faqList(map);
+        }
+        
+        mapJson.put("faqList", faqList);
+        mapJson.put("pagingHtml", page.getPagingHtml());
+        
+        return mapJson;
+    }
 }

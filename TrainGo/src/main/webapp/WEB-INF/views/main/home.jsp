@@ -39,9 +39,20 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="startdate" class="col-xs-2 control-label">인원</label>
+            <label for="mancount" class="col-xs-2 control-label">인원</label>
             <div class="col-xs-10">
-                
+                <select class="form-control" id="mancount"
+                    name="mancount" required="required">
+                    <option value="1" selected="selected">1명</option>
+                    <option value="2">2명</option>
+                    <option value="3">3명</option>
+                    <option value="4">4명</option>
+                    <option value="5">5명</option>
+                    <option value="6">6명</option>
+                    <option value="7">7명</option>
+                    <option value="8">8명</option>
+                    <option value="9">9명</option>
+                </select>
             </div>
             <div class="col-xs-10 col-xs-offset-2" id="pickDate">
             </div>
@@ -72,7 +83,22 @@
             </thead>
             <tbody id="faq_mini">
                 <tr>
-                    <td colspan="4"><img src="${pageContext.request.contextPath}/resources/img/ajax-loader.gif" style="margin: 0 auto;"></td>
+                    <td>1</td>
+                    <td>사이트 이용방법</td>
+                    <td>admin</td>
+                    <td>2017-03-25</td>
+                </tr>
+                <tr>
+                    <td>105</td>
+                    <td>회원가입 방법</td>
+                    <td>admin</td>
+                    <td>2017-04-03</td>
+                </tr>
+                <tr>
+                    <td>324</td>
+                    <td>사이트 활용방법</td>
+                    <td>admin</td>
+                    <td>2017-04-26</td>
                 </tr>
             </tbody>
         </table>
@@ -98,7 +124,12 @@
             </thead>
             <tbody id="info_mini">
                 <tr>
-                    <td colspan="6"><img src="${pageContext.request.contextPath}/resources/img/ajax-loader.gif" style="margin: 0 auto;"></td>
+                    <td>1406</td>
+                    <td>부산광역시</td>
+                    <td>부산</td>
+                    <td>차분한 밤하늘</td>
+                    <td>관리자</td>
+                    <td>2017-01-26</td>
                 </tr>
             </tbody>
         </table>
@@ -186,3 +217,4 @@
 <!-- CustomScript -->
 <script src="${pageContext.request.contextPath}/resources/js/main_hdl.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/miniResv_hdl.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/miniFaq_hdl.js"></script>
