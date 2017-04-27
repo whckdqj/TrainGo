@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.traingo.reserve.domain.CancelCommand;
+import kr.traingo.reserve.domain.SeatSelectedCommand;
 import kr.traingo.ticketlist.domain.TicketListCommand;
 import kr.traingo.ticketlist.service.TicketListService;
 
@@ -29,8 +30,11 @@ public class TicketListDetailController {
 	@Resource
 	private TicketListService ticketListService;
 	
+	
 	@RequestMapping(value="/ticketlist.do",method=RequestMethod.GET)
 	public ModelAndView process(HttpSession session	){
+		
+		
 		String id = (String)session.getAttribute("userId");
 		String cancel;
 		cancel="cancelP";
@@ -61,9 +65,13 @@ public class TicketListDetailController {
 		return mav;
 	}
 	
+	
+	
 	@RequestMapping(value="/ticketlist.do",method=RequestMethod.POST )
 	public String submit(@ModelAttribute("command")
     @Valid TicketListCommand command,HttpSession session){
+		System.out.println("일루 넘어오면 포스트이다");		
+		
 		String id = (String)session.getAttribute("userId");
 		CancelCommand command3 = new CancelCommand();
 		TicketListCommand command2 = ticketListService.ticketCancel(command.getId(), command.getTicketnum(), command.getTrainnum());
@@ -73,6 +81,13 @@ public class TicketListDetailController {
 		command3.setTrainnum(command.getTrainnum());
 		command2.setCancel("cancelP");
 		ticketListService.update(command2);
+		
+		//취소 오류를 해결하기 위해.. 추가함 메서드.되는지 테스트해볼 것
+		ticketListService.CancelSeat(command3);
+		
+		
+		
+				
 	
 		return "redirect:/ticketlist.do";
 	}
@@ -83,11 +98,13 @@ public class TicketListDetailController {
 	    
 	    return "redirect:/resv_main.do";
     }
+	
+	
 	//취소버튼을 눌렀을때 발생하는 이벤트
 	@RequestMapping(value="/cancel.do",method=RequestMethod.POST )
 	public ModelAndView submit2(@ModelAttribute("command")
     @Valid TicketListCommand command){
-		
+						
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("id" ,command.getId());
 		System.out.println(command.getId());
@@ -105,7 +122,8 @@ public class TicketListDetailController {
 		TicketListCommand command2 = ticketListService.ticketCancel(id, ticketnum, trainnum);
 		CancelCommand command = new CancelCommand();
 		command2.setCancel("cancel");
-		ticketListService.update(command2);
+		ticketListService.update(command2);		
+				
 		
 		command.setBooker("");
 		command.setSeatnum(seatnum);
