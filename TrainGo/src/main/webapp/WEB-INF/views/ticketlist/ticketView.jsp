@@ -25,8 +25,10 @@
  		var trainnum=document.getElementById('trainnum');
  		var ticketnum=document.getElementById('ticketnum');
  		var id=document.getElementById('id');
+ 		var seatnum=document.getElementById('seatnum');
  		trainnum.value=data.cells[1].innerHTML;
  		ticketnum.value=data.cells[0].innerHTML;
+ 		seatnum.value=data.cells[7].innerHTML;
  		id.value='${id}';
  
  		form.action="ticketlist.do";
@@ -37,9 +39,11 @@
 		 	
 	 		var trainnum=document.getElementById('trainnum');
 	 		var ticketnum=document.getElementById('ticketnum');
+	 		var seatnum=document.getElementById('seatnum');
 	 		var id=document.getElementById('id');
 	 		trainnum.value=data.cells[1].innerHTML;
 	 		ticketnum.value=data.cells[0].innerHTML;
+	 		seatnum.value=data.cells[7].innerHTML;
 	 		id.value='${id}';
 	 		form.action="cancel.do";
 			form.submit();
@@ -50,9 +54,11 @@
 	 		var id=document.getElementById('id');
 	 		var trainnum=document.getElementById('trainnum');
 	 		var ticketnum=document.getElementById('ticketnum');
+	 		var seatnum=document.getElementById('seatnum');
 	 		var id=document.getElementById('id');
 	 		trainnum.value=data.cells[1].innerHTML;
 	 		ticketnum.value=data.cells[0].innerHTML;
+	 		seatnum.value=data.cells[7].innerHTML;
 	 		id.value='${id}';
 	 		form.action="reserveF.do";
 	 		form.submit();
@@ -151,6 +157,7 @@
 <input type="hidden" name="id" id="id">
 <input type="hidden" name="ticketnum" id="ticketnum">
 <input type="hidden" name="trainnum" id="trainnum">
+<input type="hidden" name="seatnum" id="seatnum">
 
 </form:form>
 

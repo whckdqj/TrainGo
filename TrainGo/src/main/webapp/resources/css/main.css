@@ -3,6 +3,7 @@
 html, body {
 	margin: 0;
 	padding: 0;
+	
 }
 
 * {
@@ -202,6 +203,21 @@ div.bus {
     font-weight: bold; /* 이거는 왜 있는 거냐 */
     background: url(../img/seat_bg.gif) no-repeat 0 0;
 }
+
+/* 4.27 추가*/
+div.memberinfo {
+    background: url(../img/stw-2.jpg) no-repeat 0 0; 
+    background-position: right center;
+
+      
+}
+
+
+
+
+
+
+
 
 /* 3.29 추가  */
 ul.seats{

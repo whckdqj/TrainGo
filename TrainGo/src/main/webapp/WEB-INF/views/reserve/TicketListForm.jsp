@@ -35,18 +35,15 @@
 					<td>${list.departtime}</td>
 					<td>${list.arrivalsta}</td>
 					<td>${list.arrivaltime}</td>
-					
 					<td>${list.discount}</td>
-							
 					<td>${list.cost}</td>
-					
 					
 
 					 <c:choose>
 					 
 						<c:when test="${list.cancel eq 'cancelP' and list.nowme<list.dptme}">
 										<td><a role="button" class="btn btn-info btn-sm"
-									href="${pageContext.request.contextPath}/cancelticket.do?id=${user_id}&trainnum=${list.trainnum}&seatnum=${list.seatnum}">취소</a></td>
+									href="${pageContext.request.contextPath}/cancelticket.do?id=${userId}&trainnum=${list.trainnum}&seatnum=${list.seatnum}">취소</a></td>
 								</c:when>			
 						<c:when test="${list.cancel eq 'cancelP'}">
 										<td>차떠남</td>

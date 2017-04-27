@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+
 <div class="page-main-style">
 	<form:form action="memberModify.do" commandName="command" id="modify_form">
 			<legend>회원정보 수정</legend>
@@ -55,4 +56,5 @@
        				</div>
    				</div>
 	</form:form>
+</div>
 </div>

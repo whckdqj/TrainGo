@@ -41,7 +41,7 @@
 	src="${pageContext.request.contextPath}/resources/js/table_hdl.js"></script>
 </head>
 <body>
-	${user_id} 이 오토시트는 뭐였지? ${autoseat}
+	
 
 	<div class="container">
 
@@ -53,14 +53,15 @@
 				<div class="btn-group" role="group">
 					<button type="button" class="btn btn-default dropdown-toggle"
 						data-toggle="dropdown" aria-expanded="false">
-						관리자전용 <span class="caret"></span>
+						예약 확인 <span class="caret"></span>
 					</button>
 
 					<ul class="dropdown-menu" role="menu">
 
-						<c:if test="${!empty user_id && user_id=='admin'}">
+						<c:if test="${userLev eq 1}">
 							<li><a
 								href="${pageContext.request.contextPath}/autotrain.do">좌석 생성</a></li>
+								
 							<c:choose>
 								<c:when test="${autoseat eq 0}">
 									<li><a
@@ -73,10 +74,12 @@
 											자동 생성 해제</a></li>
 								</c:otherwise>
 							</c:choose>
+						
+						
 						</c:if>
 
 						<li><a
-							href="${pageContext.request.contextPath}/ticketlist.do?user_id=${user_id}">예약자
+							href="${pageContext.request.contextPath}/ticketlist.do?userId=${userId}">예약자
 								확인</a></li>
 
 
@@ -124,7 +127,7 @@
 
 					<div class="form-group">
 						<label for="startdate" class="col-xs-2 control-label">출발일</label>
-						<div class="col-xs-3">
+						<div class="col-xs-2">
 							<input type="text" class="form-control col-xs-2" id="startdate"
 								name="startdate" required="required">
 						</div>
@@ -133,8 +136,9 @@
 
 					<!-- 인원수 설정 가능  -->
 					<div class="form-group">
+						<div class="col-xs-1"></div>
 						<label for="area_arr" class="col-xs-1 control-label">어른</label>
-						<div class="col-xs-1">
+						<div class="col-xs-2">
 							<select class="form-control" id="mancount" name="mancount"
 								required="required">
 								<option value="0">0명</option>
@@ -147,11 +151,12 @@
 								<option value="7">7명</option>
 								<option value="8">8명</option>
 								<option value="9">9명</option>
-							</select> 
-							</div>
-							
-							
-							<label for="area_arr" class="col-xs-1 control-label">아이</label>
+							</select>
+						</div>
+
+						<label for="area_arr" class="col-xs-1 control-label">아이</label>
+
+						<div class="col-xs-2">
 							<select class="form-control" id="childrencount"
 								name="childrencount" required="required">
 								<option value="0">0명</option>
@@ -164,9 +169,11 @@
 								<option value="7">7명</option>
 								<option value="8">8명</option>
 								<option value="9">9명</option>
-							</select> 
-							
-							<label for="area_arr" class="col-xs-1 control-label">노약자</label>
+							</select>
+						</div>
+
+						<label for="area_arr" class="col-xs-1 control-label">노약자</label>
+						<div class="col-xs-2">
 							<select class="form-control" id="oldcount" name="oldcount"
 								required="required">
 								<option value="0">0명</option>
@@ -180,16 +187,17 @@
 								<option value="8">8명</option>
 								<option value="9">9명</option>
 							</select>
-
-
-
-
-
-							<div class="col-xs-1">
-								<input type="submit" class="btn btn-info" id="runCheck"
-									value="자리확인">
-							</div>
 						</div>
+					</div>
+
+
+					<div class="form-group">
+					<div class="col-xs-2"></div>
+						<div class="col-xs-1">
+							<input type="submit" class="btn btn-info" id="runCheck"
+								value="자리확인">
+						</div>
+
 					</div>
 
 
@@ -229,7 +237,7 @@
 
 
 	<div class="container">
-	
+
 		<div class="modal fade" id="myModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -250,18 +258,17 @@
 								<tbody id="costtable">
 								</tbody>
 							</table>
-							
-							<label class="col-xs-7 control-label"></label>
-							<label class="col-xs-2 control-label">총 금액:</label><label
-							class="col-xs-3 control-label" id="totaltotalcost"></label>
-							<br>													
-							
-							
+
+							<label class="col-xs-7 control-label"></label> <label
+								class="col-xs-2 control-label">총 금액:</label><label
+								class="col-xs-3 control-label" id="totaltotalcost"></label> <br>
+
+
 
 						</div>
 						<div class="modal-footer">
 							<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-						
+
 						</div>
 					</div>
 				</div>

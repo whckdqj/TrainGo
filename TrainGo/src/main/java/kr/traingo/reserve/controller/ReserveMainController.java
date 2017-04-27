@@ -42,7 +42,7 @@ import kr.traingo.util.UtilReserve;
 
 
 @Controller
-@SessionAttributes({"user_id","mancount","childrencount","oldcount","costcommand"})
+@SessionAttributes({"mancount","childrencount","oldcount","costcommand"})
 public class ReserveMainController {
 
 	/* private Logger log = Logger.getLogger(this.getClass());    
@@ -75,46 +75,49 @@ public class ReserveMainController {
         ResultTimeTableCommand tt=null;
         
         int count=0;
-        int count1=0;
-        int confirm=reserveService.autotrainconfirm();
+        int count1=0;       
 		
 		// Exception Control Routine
 		if(departdate.equals("") || departdate==null){
 		    mav.setViewName("trainlist");
-	        mav.addObject("user_id","admin");
+	        mav.addObject("userId","admin");
 		    return mav;
 		}
 		if(depStn.equals("")||depStn==null){
 		    mav.setViewName("trainlist");
-	        mav.addObject("user_id","admin");
+	        mav.addObject("userId","admin");
             return mav;
 		}
 		if(arrStn.equals("")||arrStn==null){
 		    mav.setViewName("trainlist");
-	        mav.addObject("user_id","admin");
+	        mav.addObject("userId","admin");
             return mav;
 		}
+        
+        
 		
 		// Create AutoTrain Table
-		/* Auto Train Control - START */
+		 //Auto Train Control - START 
         reserveService.deleteAutoTrain();
 
         // build table with available 
         for(int i=0;i<3;i++){
             int year = cal.get(Calendar.YEAR);
             int mon = cal.get(Calendar.MONTH)+1;
-            int day = cal.get(Calendar.DAY_OF_MONTH)+i;          
+            int day = cal.get(Calendar.DAY_OF_MONTH)+i;
+            
+            
             // Build Date
             String ymd=year+"-"+String.format("%02d", mon)+"-"+String.format("%02d", day);   
             
             // get real time-table from server
             list2 = util2.getTimeTableFromServer(depStn, arrStn, ymd);
             
-            /*if(list2.isEmpty()||list2==null){
+            if(list2.isEmpty()||list2==null){
                 // No such Train on that Station
                 mav.setViewName("redirect:/home.do");
                 return mav;
-            }*/
+            }
             
             for(int z=list2.size()-1;z>=0;z--){
                 // Extract Command-Bean
@@ -122,14 +125,12 @@ public class ReserveMainController {
                 count=reserveService.ModifyAutoTrain(tt);
                 
                 if(count!=0){
-                    System.out.println("같은 차량이 있어 인덱스 "+z+"번을 포함시키지 않습니다.");
+                   // System.out.println("같은 차량이 있어 인덱스 "+z+"번을 포함시키지 않습니다.");
                 }else{
-                    System.out.println(z+"번을 추가합니다");
+                   // System.out.println(z+"번을 추가합니다");
                     reserveService.insertAutoTrain(tt);
                 }
-
-            }
-        }
+            }        }
         
         // tlist : TrainNum
         List<CSCommand> tlist=new ArrayList<CSCommand>();
@@ -143,10 +144,10 @@ public class ReserveMainController {
             
             count1=reserveService.ModifyAutoSeats(train.getTrainnum());
             if(count1!=0){
-                System.out.println("시트가 있어 인덱스 "+y+"번을 삭제합니다");
+               // System.out.println("시트가 있어 인덱스 "+y+"번을 삭제합니다");
                 tlist.remove(y);                
             }else{
-                System.out.println("시트가 없어"+y+"y번 삭제 안합니다.");
+               // System.out.println("시트가 없어"+y+"y번 삭제 안합니다.");
             }
         }
         
@@ -157,12 +158,13 @@ public class ReserveMainController {
 
             for(int y=1;y<=240;y++){
                 seat2.setSeatnum(y);                    
-                System.out.println("추가될 시트넘버"+seat2.getSeatnum());
-                System.out.println("추가될 시트 트래인넘버"+seat2.getTrainnum());
+                
+               
 
                 reserveService.MakeSeat(seat2);
             }
         }
+        
         /* Auto Train Control - END */
 		
 		// Get TrainSeat
@@ -178,14 +180,15 @@ public class ReserveMainController {
 		// Call Train Seat List
 		List<TrainCommand> trainList = reserveService.getTrainList(command);
 		
-		mav.setViewName("trainlist");
-		mav.addObject("user_id","admin");
-		mav.addObject("autoseat",confirm);
+		mav.setViewName("trainlist");				
 		mav.addObject("resvList",trainList);
 
 		return mav;
 	}
 
+	
+	
+	
 
 	//트레인정보와 시트 정보를 가져와 줌 
 		@RequestMapping("/trainseat.do")
@@ -329,9 +332,7 @@ public class ReserveMainController {
 			int oldcount=costcommand.getOldcount();
 			int childrencount=costcommand.getChildrencount();
 			
-			 System.out.println("성인 수입니다"+mancount);
-			 System.out.println("노인 수입니다"+oldcount);
-			 System.out.println("아이 수입니다"+childrencount);
+			 
 			 		 
 			
 			while(tokens.hasMoreElements()){
@@ -371,23 +372,19 @@ public class ReserveMainController {
 				}
 						
 				
-				reserveService.registerSeat(command);	
+				reserveService.registerSeat(command);		
 				
-				//여기가 왜 안될까?
-				System.out.println("어린아이의 비용"+command.getCost());
 				
 				
 				reserveService.registerticket(command);	   
 
-				
-
-
 			}    	
-			 System.out.println("데이터는 잘 넘어갔습니다");
-
+			 
+        
 			return "redirect:/ticketlist.do";
 
 		}	
+
 
 
 

@@ -37,7 +37,7 @@ public class MemberDeleteController {
 	}
 	@RequestMapping(value="/member/memberDelete.do",method=RequestMethod.POST)
 	public String submit(@ModelAttribute("command")
-						 @Valid MemberCommand memberCommand,
+						 MemberCommand memberCommand,
 						 BindingResult result,
 						 SessionStatus status,
 						 HttpSession session){

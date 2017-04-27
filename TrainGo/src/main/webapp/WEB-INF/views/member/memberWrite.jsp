@@ -54,9 +54,10 @@
            				<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/home.do'">홈으로</button>
        				</div>
    				</div>
-			
 	</form:form>
-	
+	<div class="image" align="center">
+  		<img src="${pageContext.request.contextPath}/resources/img/login-s2b.jpg" />
+ 	</div>
 <!-- <script>
 $(document).on("keydown", function(event){
 	console.log(event.keyCode);
