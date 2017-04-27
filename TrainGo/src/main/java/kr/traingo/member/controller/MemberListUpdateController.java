@@ -35,7 +35,7 @@ public class MemberListUpdateController {
 		return new ModelAndView("updateForm","memberCommand",memberCommand);
 	}
 	@RequestMapping(value="/member/updateList.do",method=RequestMethod.POST)
-	public String submit(@ModelAttribute("memberCommand")@Valid MemberCommand memberCommand, 
+	public String submit(@ModelAttribute("memberCommand") MemberCommand memberCommand, 
 						 BindingResult result, 
 						 SessionStatus status){
 		if(log.isDebugEnabled()){

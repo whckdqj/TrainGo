@@ -14,7 +14,7 @@
 	<div class="col-xs-12">
 	<div class="col-xs-6">
 	<ul class="list-inline">
-		<li><a href="${pageContext.request.contextPath}/index.do">홈으로</a></li>
+		<li><a href="${pageContext.request.contextPath}/home.do">홈으로</a></li>
 		<li><a data-g-label="about"	href="${pageContext.request.contextPath}/contents/table/table.do">열차시간표</a></li>
 		<li><a data-g-label="privacy" data-toggle="collapse" href="#thePrivacy" aria-expanded="false" aria-controls="thePrivacy">저작권</a></li>
 		<li><a data-g-label="help" href="${pageContext.request.contextPath}/contents/qna/qnaList.do">Q&amp;A</a>
