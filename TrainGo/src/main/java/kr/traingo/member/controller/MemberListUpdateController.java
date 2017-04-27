@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.traingo.member.domain.MemberCommand;
 import kr.traingo.member.service.MemberService;
-import kr.traingo.member.validator.MemberValidator;
+//import kr.traingo.member.validator.MemberValidator;
 
 @Controller
 @SessionAttributes("memberCommand")
@@ -35,7 +35,7 @@ public class MemberListUpdateController {
 		return new ModelAndView("updateForm","memberCommand",memberCommand);
 	}
 	@RequestMapping(value="/member/updateList.do",method=RequestMethod.POST)
-	public String submit(@ModelAttribute("memberCommand")@Valid MemberCommand memberCommand, 
+	public String submit(@ModelAttribute("memberCommand") MemberCommand memberCommand, 
 						 BindingResult result, 
 						 SessionStatus status){
 		if(log.isDebugEnabled()){
@@ -43,7 +43,7 @@ public class MemberListUpdateController {
 		}
 		
 		//유효성 체크
-		new MemberValidator().validate(memberCommand, result);
+	//	new MemberValidator().validate(memberCommand, result);
 		if(result.hasErrors()){
 			return "updateForm";
 		}

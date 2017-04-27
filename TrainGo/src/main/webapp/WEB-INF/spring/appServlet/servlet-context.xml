@@ -38,14 +38,14 @@
 	<resources mapping="/resources/**" location="/resources/" />
     
     <!-- Exception Configuration : Order(0) -->
-    <beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <!-- <beans:bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <beans:property name="order" value="0"/>
         <beans:property name="exceptionMappings">
             <beans:props>
                 <beans:prop key="java.lang.Throwable">pageError</beans:prop>
             </beans:props>
         </beans:property>
-    </beans:bean>
+    </beans:bean> -->
     
     <!-- File Download Controll : Order(0) -->
     <beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
@@ -128,6 +128,16 @@
             <mapping path="/detailList.do"/>
             <mapping path="/list.do"/>
             <mapping path="/member/updateList.do"/>
+            <mapping path="/autotrain.do"/>
+            <mapping path="/autotrainon.do"/>
+            <mapping path="/autotrainoff.do"/>
+            <mapping path="/table/getStationInfoTableAdmin.do"/>
+            <mapping path="/table/getCtyCodeAdmin.do"/>
+            <mapping path="/table/getTrainSttnListAdmin.do"/>
+            <mapping path="/table/getVhcleKndAdmin.do"/>
+            <mapping path="/pageAdmin.do"/>
+            <mapping path="/board/faqBoard/faqwrite.do"/>
+            <mapping path="/board/informationBoard/infowrite.do"/>
             <beans:bean class="kr.traingo.interceptor.AdminCheckInterceptor"/>
         </interceptor>
     </interceptors>

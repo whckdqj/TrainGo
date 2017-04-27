@@ -24,45 +24,23 @@ public class AdminCheckInterceptor extends HandlerInterceptorAdapter{
     	
     	HttpSession session = request.getSession();
     	String id = (String)session.getAttribute("userId");
-    	int lev = Integer.valueOf((String)session.getAttribute("userLev"));
+    	int lev = Integer.valueOf(session.getAttribute("userLev")+"");
+    	String redirectUrl = (String)session.getAttribute("pagePrev");
     	
-    	if(lev==0 || id==null || id.equals("")){
-    	    // ID : X / Lev : X
-    	    session.invalidate();
-    		response.sendRedirect(request.getContextPath()+"/member/memberLogin.do");
-    		return false;
-    		
+    	if(lev==1 && id.equals("admin")){
+    	    // ID : admin / Lev : 1
+    		return true;
     	}
-    	else if((id==null || id.equals("")) && lev==0){
-    	    // ID : X / Lev : 0
-    	    session.invalidate();
-    		response.sendRedirect(request.getContextPath()+"/member/memberWrite.do");
-    		return false;
-    	}
-    	else if((id==null || id.equals("")) && lev==1){
-    	    // ID : X / Lev : 1
-    	    session.invalidate();
-            response.sendRedirect(request.getContextPath()+"/member/memberWrite.do");
-    		return false;
-    	}
-    	else if(id!=null && lev==0){
-    	    // ID : O / Lev : X
-    	    session.invalidate();
-            response.sendRedirect(request.getContextPath()+"/member/memberLogin.do");
-            return false;
-        }
-        else if(id!=null && (lev==0 || lev==1)){
-            if(id.equals("admin") && lev==1){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
     	else{
-    	    session.invalidate();
-            response.sendRedirect(request.getContextPath()+"/member/memberLogin.do");
-            return false;
+    	    if(redirectUrl!=null){
+    	        session.removeAttribute("pagePrev");
+    	        response.sendRedirect(redirectUrl);
+    	        return false;
+    	    }
+    	    else{
+    	        response.sendRedirect(request.getContextPath()+"/home.do");
+    	        return false;
+    	    }
     	}
     }
 }

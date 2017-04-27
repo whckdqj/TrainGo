@@ -21,10 +21,20 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
     	if(log.isDebugEnabled()){
             log.debug("**TrainGo[DEBUG] : "+this.toString()+"**");
         }
-    	
-    	HttpSession session = request.getSession();
-    	String id = (String)session.getAttribute("userId");
-    	int lev = Integer.valueOf(session.getAttribute("userLev")+"");
+    	HttpSession session = request.getSession();    
+    	String id=null;
+    	int lev=0;
+    	try{
+    	    id = (String)session.getAttribute("userId");
+    	    lev = Integer.valueOf(session.getAttribute("userLev")+"");
+    	}
+    	catch (Exception e) {
+    	    id="";
+    	    lev=0;
+    	    session.invalidate();
+            response.sendRedirect(request.getContextPath()+"/member/memberLogin.do");
+            return false;
+        }
     	
     	if(lev==0 && (id==null || id.equals(""))){
     	    // ID : X / Lev : X

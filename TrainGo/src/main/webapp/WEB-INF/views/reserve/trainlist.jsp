@@ -8,8 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>예매 예약</title>
-
-
+    
 <!-- Custom Style -->
 <link href="${pageContext.request.contextPath}/resources/css/main.css"
 	rel="stylesheet">
@@ -206,8 +205,8 @@
 		</div>
 
 
-
-		<div class="col-xs-12" id="reservationcar" style="display: none;">
+        
+		<div class="col-xs-12" id="reservationcar" <c:if test="${empty resvList}">style="display: none;"</c:if>>
 			<h4 class="text-center">
 				<strong>*** 예약 가능한 차량이 아래 표시됩니다! 확인해주세요 ***</strong>
 			</h4>
@@ -226,7 +225,21 @@
 					</tr>
 				</thead>
 				<tbody id="resertable">
-
+                    <c:if test="${!empty resvList}">
+                        <c:forEach var="theList" items="${resvList}">
+                        <tr>
+                          <td>${theList.trainnum}</td>
+                          <td>${theList.trainname}</td>
+                          <td>${theList.departsta}</td>
+                          <td>${theList.departtime}</td>
+                          <td>${theList.arrivalsta}</td>
+                          <td>${theList.arrivaltime}</td>
+                          <td>${theList.charge}&nbsp;<a href='#myModal' class='btn btn-primary' data-toggle='modal' id='clickmodal'>상세정보</a></td>
+                          <td>${theList.seats}</td>
+                          <td><a href='${pageContext.request.contextPath}/selectseat.do?trainnum=${theList.trainnum}'>예매</a></td>
+                        </tr>
+                        </c:forEach>
+                    </c:if>
 				</tbody>
 			</table>
 		</div>

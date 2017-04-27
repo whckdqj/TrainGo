@@ -68,7 +68,7 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="${pageContext.request.contextPath}/list.do">회원관리</a></li>
 						<li><a href="#">예약관리</a></li>
-						<li><a href="#">자료관리</a></li>
+						<li><a href="${pageContext.request.contextPath}/pageAdmin.do">자료관리</a></li>
 						<li><a href="#">게시판관리</a></li>
 					
 					</ul>

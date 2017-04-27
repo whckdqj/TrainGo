@@ -12,7 +12,7 @@ public class MemberValidator implements Validator{
 	public boolean supports(Class<?> clazz) {
 		return MemberCommand.class.isAssignableFrom(clazz);
 	}
-
+    
 	@Override
 	public void validate(Object target, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "id", "required");
