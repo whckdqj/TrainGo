@@ -38,6 +38,14 @@
             <div class="col-xs-10 col-xs-offset-2" id="pickDate">
             </div>
         </div>
+        <div class="form-group">
+            <label for="startdate" class="col-xs-2 control-label">인원</label>
+            <div class="col-xs-10">
+                
+            </div>
+            <div class="col-xs-10 col-xs-offset-2" id="pickDate">
+            </div>
+        </div>
         <div class="col-xs-12">
         <hr>
         </div>

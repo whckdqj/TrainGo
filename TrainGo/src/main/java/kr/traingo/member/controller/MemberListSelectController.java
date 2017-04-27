@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,12 @@ public class MemberListSelectController {
 	private MemberService memberService;
 	
 	@RequestMapping("/list.do")
-	public ModelAndView process(@RequestParam (value="pageNum",defaultValue="1")int currentPage){
+	public ModelAndView process(@RequestParam (value="pageNum",defaultValue="1")int currentPage,
+	                            HttpServletRequest request){
+	    // JCB Add For Redirect
+	    String referer = request.getHeader("Referer");
+        request.getSession().setAttribute("prevPage", referer);
+	    
 		int count = memberService.getMemberCount();
 		
 		if(log.isDebugEnabled()){
