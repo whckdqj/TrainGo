@@ -192,6 +192,9 @@ public class ReserveMainController {
         mav.setViewName("trainlist");               
         mav.addObject("resvList",trainList);
         mav.addObject("mancount",mCount);
+        
+        // Debug
+        System.out.println("** Return Model **");
 
         return mav;
     }
@@ -213,17 +216,14 @@ public class ReserveMainController {
             //트레인커맨드도 나중에 바꿔보자
             TrainCommand command=new TrainCommand();
             
-           
-            
             List<RatesCommand> rlist=reserveService.getrates();        
-                    
             
             command.setDepartsta("서울");
             command.setArrivalsta("부산");
             command.setDeparttime(departdate);      
             
-             
-            List<TrainCommand> train=reserveService.getTrainList(command);          
+            
+            List<TrainCommand> train=reserveService.getTrainList(command);
             Map<String,Object> mapJson =new HashMap<String,Object>();       
             mapJson.put("list",train);
             
@@ -237,8 +237,6 @@ public class ReserveMainController {
                   
             }
             
-                
-                    
             model.addAttribute("mancount",mancount);
             model.addAttribute("oldcount",oldcount);
             model.addAttribute("childrencount",childrencount);      
